@@ -1,0 +1,2341 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>WBL Section Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#15284B; --gold:#E7AB2A; --body:#595959; --ink:#000000; --bg:#FFFFFF;
+  --green:#2F7D62; --brick:#B0543E;
+  --rule:rgba(21,40,75,.14); --t02:rgba(21,40,75,.03); --t05:rgba(21,40,75,.05);
+  --sans:"Libre Franklin","Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--bg);color:var(--body);font-family:var(--sans);font-size:1rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;margin:0;
+  padding-left:max(22px,env(safe-area-inset-left,0px));
+  padding-right:max(22px,env(safe-area-inset-right,0px));
+  padding-block:40px 96px}
+::selection{background:rgba(231,171,42,.3)}
+.wrap{max-width:1340px;margin:0 auto}
+.pagehead{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 36px;padding-bottom:14px}
+.pagehead h1{margin:0;padding:0}
+.headbtns{display:flex;gap:10px;flex-wrap:wrap;padding-top:14px}
+.headbtn{appearance:none;display:inline-block;background:#fff;border:1.5px solid var(--navy);border-radius:4px;color:var(--navy);
+  font:600 .875rem var(--sans);padding:9px 16px;cursor:pointer;text-decoration:none;line-height:1.2}
+.headbtn:hover,.headbtn:focus-visible{background:var(--navy);color:#fff;outline:0}
+h1{font-size:2.75rem;font-weight:600;color:var(--navy);letter-spacing:-.02em;line-height:1.12}
+h2{font-size:1.25rem;font-weight:600;color:var(--navy);margin:0 0 4px;line-height:1.3}
+h2+.grule{width:64px;height:3px;background:var(--gold);margin:0 0 16px}
+.sec{margin-top:40px}
+
+/* top controls */
+.top{display:flex;flex-wrap:wrap;gap:0 34px;align-items:flex-end;margin-bottom:8px}
+.tf{display:flex;flex-direction:column;gap:2px}
+.tf label{font-size:.8125rem;color:var(--body)}
+#top .tf label{font-weight:600;color:var(--ink)}
+.tf.pay input{text-align:left;padding:3px 0 3px 12px}
+.tf .pre{position:absolute;left:0;top:50%;transform:translateY(-50%);font:600 1.0625rem var(--sans);color:var(--navy)}
+.tf .per{font-size:.75rem;color:#A0A0A0;font-weight:400}
+.tf .box{position:relative;width:110px}
+.tf .box.pct{width:76px}
+.tf input{width:100%;font:600 1.0625rem var(--sans);color:var(--navy);font-variant-numeric:tabular-nums;
+  text-align:right;background:none;border:0;border-bottom:1px solid var(--rule);padding:3px 16px 3px 0}
+.tf input:hover{border-bottom-color:var(--navy)}
+.tf input:focus{outline:0;border-bottom:2px solid var(--navy)}
+.tf .post{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.8125rem;color:#A0A0A0}
+.tnote{font-size:.8125rem;color:#8A8A8A;margin:4px 0 0}
+
+
+/* intro modal */
+body.modalopen{overflow:hidden}
+.imodal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:rgba(21,40,75,.55);padding:14px 1.5vw}
+.imodal[hidden]{display:none!important}
+.imdlg{position:relative;width:min(1360px,97vw);max-height:100%;overflow-y:auto;background:#fff;border-top:5px solid var(--navy);
+  border-radius:4px;box-shadow:0 12px 48px rgba(0,0,0,.35);padding:34px 44px 40px;font-size:1.0625rem;line-height:1.6;color:var(--body)}
+.imx{position:absolute;top:10px;right:14px;appearance:none;background:none;border:0;font:400 2rem/1 var(--sans);
+  color:#8A8A8A;cursor:pointer;padding:2px 10px}
+.imx:hover,.imx:focus-visible{color:var(--navy);outline:0}
+.imdlg h2{font-size:1.5rem;font-weight:600;color:var(--navy);margin:0 0 12px;line-height:1.3;padding-right:40px}
+.imdlg h3{font-size:1.0625rem;font-weight:700;color:var(--navy);margin:0 0 4px}
+.imdlg ol,.imdlg ul{margin:6px 0 0;padding-left:1.4em}
+.imdlg ul ul,.imdlg li>ul{margin:2px 0}
+.imdlg .imsec{margin-top:20px}
+.imdlg .imsec p{margin:0 0 8px}
+.imdlg .imtight p{margin:0 0 3px}
+.imdlg .imrule{border:0;border-top:1px solid var(--rule);margin:30px 0 24px}
+
+/* variables down the left of the chart */
+.chartlayout{display:flex;gap:30px;align-items:flex-start;margin-top:22px;border-top:3px solid var(--navy);padding-top:10px}
+.chartlayout .top{flex:0 0 200px;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:16px;
+  margin:0;padding-top:26px}
+.chartlayout .top .tgap{height:14px;flex:none}
+.chartlayout .chartbox{flex:1 1 0;min-width:0;margin-top:0}
+@media (max-width:900px){
+  .chartlayout{flex-direction:column}
+  .chartlayout .top{flex:none;flex-direction:row;flex-wrap:wrap;align-items:flex-end;gap:12px 28px}
+  .chartlayout .top .tgap{display:none}
+}
+.chartlayout .top .tf input{text-align:left}
+.vartitle{font-size:1rem;font-weight:600;color:var(--navy);margin:0}
+
+.msel{position:relative;width:100%}
+.msbtn{appearance:none;width:100%;text-align:left;background:#fff;border:1px solid var(--rule);border-radius:3px;
+  font:500 .875rem var(--sans);color:var(--navy);padding:6px 26px 6px 9px;cursor:pointer;position:relative;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.msbtn::after{content:"\25BE";position:absolute;right:9px;top:50%;transform:translateY(-50%);font-size:.75rem;color:#8A8A8A}
+.msbtn:hover,.msbtn:focus-visible{border-color:var(--navy);outline:0}
+.mspanel{position:absolute;z-index:80;left:0;top:calc(100% + 4px);width:280px;max-height:340px;overflow-y:auto;
+  background:#fff;border:1px solid var(--navy);border-top-width:3px;box-shadow:0 6px 18px rgba(0,0,0,.22);padding:6px 0}
+.msitem{display:flex;align-items:center;gap:8px;padding:5px 12px;font:400 .875rem var(--sans);color:var(--ink);cursor:pointer}
+#top .msitem{flex-direction:row;font-weight:400;font-size:.875rem;color:var(--ink);text-align:left}
+.msitem input[type=checkbox],.tf .msitem input{width:auto;flex:none;margin:0;padding:0;border:0;text-align:left;accent-color:var(--navy);font-size:1rem}
+.msitem:hover{background:var(--t05)}
+.msgrp{padding:8px 12px 3px;font:600 .6875rem var(--sans);color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.plussign{display:inline-block;width:22px;text-align:center;font:600 1rem var(--sans);color:var(--navy);flex:none}
+.infoi{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:5px;
+  border:1.5px solid var(--navy);border-radius:50%;font:italic 700 10px Georgia,serif;color:var(--navy);
+  cursor:help;vertical-align:1px;line-height:1;user-select:none}
+.infoi:hover,.infoi:focus-visible{background:var(--navy);color:#fff;outline:0}
+
+/* chart */
+.chartbox{margin-top:22px}
+.chartscroll{overflow-x:auto}
+svg{display:block;width:100%;min-width:860px;height:auto}
+.axlab{font:400 10px var(--sans);fill:#A0A0A0;font-variant-numeric:tabular-nums}
+.chartnote{font:500 13px var(--sans);fill:var(--ink);font-variant-numeric:tabular-nums}
+.termlab{font:600 12px var(--sans);fill:var(--navy)}
+.termsub{font:400 10.5px var(--sans);fill:#8A8A8A;font-variant-numeric:tabular-nums}
+.termcost{font:600 13px var(--sans);fill:var(--ink);font-variant-numeric:tabular-nums}
+.termfoot{font:400 9px var(--sans);fill:#A0A0A0}
+.blocknum{font:600 10px var(--sans);fill:#fff;font-variant-numeric:tabular-nums}
+.swb{display:inline-block;width:16px;min-width:16px;height:16px;border:1px solid #BDBDB6;
+  border-radius:3px;cursor:pointer;vertical-align:middle;box-sizing:border-box}
+.swb:hover,.swb:focus{border-color:var(--navy);outline:none}
+.cpick{position:absolute;z-index:70;background:#fff;border:1px solid var(--navy);border-top-width:3px;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);padding:10px;width:180px;box-sizing:content-box}
+.cpick canvas{display:block;width:180px;cursor:crosshair;touch-action:none}
+.cpick canvas.cpsv{height:120px;border-radius:2px}
+.cpick canvas.cphue{height:12px;margin-top:8px;border-radius:2px}
+.cprow{display:flex;align-items:center;gap:4px;margin-top:8px;font:600 .8125rem var(--sans);color:var(--navy)}
+.cprow input{flex:1;min-width:0;font:500 .8125rem var(--sans);text-transform:uppercase;border:1px solid var(--rule);
+  padding:3px 5px;color:var(--ink)}
+.cprow input:focus{outline:2px solid var(--navy);outline-offset:-1px}
+.blockname.it{font-style:italic}
+.blockname{font:400 10px var(--sans);fill:rgba(255,255,255,.92)}
+.blockcost{font:600 10px var(--sans);fill:rgba(255,255,255,.92);font-variant-numeric:tabular-nums}
+.blocksub{font:400 9px var(--sans);fill:rgba(255,255,255,.7);font-variant-numeric:tabular-nums}
+#chart rect{cursor:default}
+.carrylab{font:500 10.5px var(--sans);fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.arrlab{font:500 9.5px var(--sans);fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.arrlab.b{font-weight:700}
+.gapmark{font:600 10.5px var(--sans);fill:var(--brick);font-variant-numeric:tabular-nums}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;font-size:.8125rem}
+.legend i{display:inline-block;width:11px;height:11px;margin-right:7px;vertical-align:-1px}
+.legend span{color:#8A8A8A;font-variant-numeric:tabular-nums}
+
+/* type table */
+table.types{border-collapse:collapse;width:100%;max-width:1100px;font-size:.875rem}
+table.types th{text-align:left;font:600 .6875rem var(--sans);color:var(--navy);text-transform:uppercase;
+  letter-spacing:.06em;background:var(--t02);padding:8px 9px;border-bottom:1px solid var(--rule)}
+table.types td{padding:5px 9px;border-bottom:1px solid var(--rule);vertical-align:middle}
+table.types input{font:400 .875rem var(--sans);color:var(--ink);border:1px solid var(--rule);
+  background:#fff;padding:4px 6px;width:100%;min-width:0}
+table.types input:focus{outline:2px solid var(--navy);outline-offset:-1px}
+table.types input.num{text-align:right;font-variant-numeric:tabular-nums}
+table.types input.sw,.sw{display:inline-block;width:16px;min-width:16px;height:16px;
+  flex:0 0 auto;padding:0;border:1px solid rgba(21,40,75,.22);border-radius:3px;
+  cursor:pointer;background:none;-webkit-appearance:none;appearance:none}
+table.types input.tcode{flex:0 0 auto}
+table.types td.tinfo{color:#595959;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.types input.tdesc{width:100%;min-width:180px}
+table.types .dragcell{padding-left:4px;padding-right:0}
+table.types .draghandle{cursor:grab;color:#B5B5AF;font-size:1rem;user-select:none;padding:0 3px}
+table.types .draghandle:hover{color:var(--navy)}
+table.types tr.dragging{opacity:.4}
+table.types tr.dropbefore td{border-top:2px solid var(--navy)}
+table.types tr.dropafter td{border-bottom:2px solid var(--navy)}
+.sw::-webkit-color-swatch-wrapper{padding:0}
+.sw::-webkit-color-swatch{border:0;border-radius:2px}
+.sw::-moz-color-swatch{border:0;border-radius:2px}
+.tdel{appearance:none;background:none;border:0;color:#B4B4B4;font:400 .9375rem var(--sans);
+  cursor:pointer;padding:0 2px}
+.tdel:hover{color:var(--brick)}
+.addtype{appearance:none;background:none;border:1px dashed var(--rule);margin-top:10px;
+  font:500 .8125rem var(--sans);color:#8A8A8A;padding:7px 14px;cursor:pointer}
+.addtype:hover{border-color:var(--navy);color:var(--navy)}
+
+/* static legend of the course types */
+.lgh{font-size:1rem;font-weight:600;color:var(--navy);margin:30px 0 8px}
+table.tlegend{border-collapse:collapse;width:100%;max-width:760px;font-size:.875rem}
+table.tlegend td{padding:7px 9px;border-bottom:1px solid var(--rule);vertical-align:middle;color:var(--ink)}
+table.tlegend td.lgsw{width:34px;padding-right:0}
+table.tlegend td.lgnum{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--body)}
+.totalbar{text-align:center;margin:30px 0 6px;font:500 1.75rem var(--sans);color:var(--navy);font-variant-numeric:tabular-nums}
+.totalbar b{font-weight:700;color:var(--ink)}
+.totalbar .tbsep{margin:0 10px;color:#A0A0A0}
+.legendbox{display:block;width:fit-content;max-width:100%;margin:14px auto 0;
+  padding:12px 14px;border:1px solid var(--rule);border-radius:4px;background:var(--t02)}
+.lgcol{display:flex;flex-direction:row;flex-wrap:wrap;gap:12px 20px}
+.lglink{cursor:pointer}
+.lglink:hover .lgname,.lglink:focus-visible .lgname{text-decoration:underline;color:var(--navy)}
+.lglink:focus-visible{outline:2px solid var(--navy);outline-offset:3px;border-radius:3px}
+.imlink{color:var(--navy);text-decoration:underline}
+.imlink:hover{color:#000}
+.lgitem{display:flex;align-items:flex-start;gap:10px}
+.lgitem .lgsq{flex:none;margin-top:1px}
+.lgtx{display:flex;flex-direction:column;line-height:1.35}
+.lgname{font-size:.875rem;color:var(--ink)}
+.lgmeta{font-size:.75rem;color:#8A8A8A;font-variant-numeric:tabular-nums}
+.lgsq{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:3px}
+.lgsq i{display:block;width:8px;height:8px;border-radius:50%}
+
+/* departments */
+.dwrap{display:grid;grid-template-columns:1fr;gap:26px;align-items:start}
+.pullbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.pullbar>span:first-child{font:500 .8125rem var(--sans);color:var(--ink)}
+.pullbar .pullnote{font-size:.8125rem;color:#8A8A8A}
+table.dept,table.grp{border-collapse:collapse;width:100%;font-size:.8125rem}
+table.dept th,table.grp th{text-align:left;font:600 .625rem var(--sans);color:var(--navy);
+  text-transform:uppercase;letter-spacing:.06em;background:var(--t02);padding:7px 8px;
+  border-bottom:1px solid var(--rule)}
+table.dept td,table.grp td{padding:3px 8px;border-bottom:1px solid var(--rule);vertical-align:middle}
+table.dept .sch{font:600 .6875rem var(--sans);color:#8A8A8A}
+table.dept td:nth-child(2){white-space:nowrap}
+table.dept th abbr{text-decoration:none;cursor:help;color:var(--brick)}
+table.dept .helpable{cursor:help}
+table.dept .redstar{color:#C42B48;font-weight:700;margin-left:1px}
+table.dept tr.cols th:nth-child(3),table.dept tr.cols th:nth-child(4){text-align:right}
+table.dept tr.cols th:nth-child(3){padding-right:10px}
+table.dept td.pct{text-align:right;font-variant-numeric:tabular-nums;padding-right:10px}
+.helptip{position:fixed;z-index:60;display:none;width:min(440px,calc(100vw - 24px));box-sizing:border-box;
+  background:#fff;color:var(--ink);border:1px solid var(--navy);border-top-width:3px;
+  box-shadow:0 4px 14px rgba(0,0,0,.2);padding:10px 14px 4px;font:400 .8125rem/1.5 var(--sans);pointer-events:none}
+.helptip p{margin:0 0 9px}
+.helptip.pinned{position:absolute;display:block;pointer-events:auto;padding-right:30px}
+.helptip .tipx{position:absolute;right:6px;top:3px;appearance:none;background:none;border:0;
+  font:400 1.25rem/1 var(--sans);color:#8A8A8A;cursor:pointer;padding:2px 6px}
+.helptip .tipx:hover{color:var(--navy)}
+table.dept .kcell{white-space:nowrap;padding-right:2px}
+table.dept input.dkc{width:100px;font:500 .75rem var(--sans);color:#6E6E68}
+table.dept .tcell{white-space:nowrap;text-align:right;padding-left:2px;padding-right:4px}
+table.dept input.dt{width:44px;min-width:44px;text-align:right;
+  border-color:var(--rule);background:#fff}
+table.dept input.dt:disabled{border-color:transparent;background:none}
+.il{appearance:none;width:19px;height:17px;margin-left:4px;vertical-align:middle;
+  font:600 8.5px var(--sans);letter-spacing:.03em;cursor:pointer;
+  border:1px solid var(--rule);border-radius:3px;background:#fff;color:#C4C4C0;padding:0}
+.il:hover{border-color:#CE7A52;color:#CE7A52}
+.il.on{background:#CE7A52;border-color:#CE7A52;color:#fff}
+.il.fs{width:13px;height:14px;font-size:5px;line-height:1.05;letter-spacing:0;margin-left:2px;border-radius:2px}
+.il.fs:hover{border-color:#41B6E6;color:#41B6E6}
+.il.fs.on{background:#41B6E6;border-color:#41B6E6;color:#fff}
+.il:disabled{opacity:.25;cursor:default}
+.il:disabled:hover{border-color:var(--rule);color:#C4C4C0}
+table.grp{margin-top:4px}
+.chartip hr.tiprule{border:0;border-top:1px solid rgba(255,255,255,.4);margin:5px 0}
+.chartip{position:fixed;display:none;z-index:50;pointer-events:none;max-width:300px;
+  white-space:pre-line;background:#15284B;color:#fff;font:400 .75rem/1.45 var(--sans);
+  padding:7px 10px;border-radius:3px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+table.dept input.dt:disabled{color:#D0D0D0;background:none}
+table.grp .gown{font-weight:600;color:var(--navy)}
+table.dept tr.dout td{opacity:.48}
+table.dept tr.dout .dcur{font-style:italic}
+table.dept input[type=checkbox]{width:auto;padding:0;border:0;background:none;accent-color:var(--navy)}
+table.dept input,table.grp input{font:400 .8125rem var(--sans);color:var(--ink);border:1px solid transparent;
+  background:none;padding:3px 5px;width:100%;min-width:0;border-radius:0}
+table.dept input:hover{border-color:var(--rule);background:#fff}
+table.dept th .l2{display:block;line-height:.9;margin-top:-1px}
+table.dept td.spcell{text-align:center}
+.splitbtn{appearance:none;background:#fff;border:1px solid var(--rule);border-radius:3px;color:#8A8A8A;
+  font:500 .6875rem var(--sans);font-variant-numeric:tabular-nums;padding:2px 5px;cursor:pointer;white-space:nowrap}
+.splitbtn:hover{border-color:var(--navy);color:var(--navy)}
+.splitbtn.mod{background:#E7AB2A;border-color:#E7AB2A;color:#15284B;font-weight:700}
+.splitov{position:fixed;inset:0;z-index:90;background:rgba(21,40,75,.35);display:flex;align-items:center;justify-content:center}
+.splitmod{background:#fff;border:1px solid var(--navy);border-top-width:3px;box-shadow:0 8px 30px rgba(0,0,0,.3);
+  padding:14px 18px 16px;width:min(320px,calc(100vw - 24px));font:400 .8125rem/1.45 var(--sans);color:var(--ink)}
+.splitmod h3{margin:0 0 4px;font:600 .9375rem var(--sans);color:var(--navy)}
+.splitmod p{margin:0 0 10px;color:#595959}
+.splitmod .srow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.splitmod .srow label{width:56px;font-weight:600;color:var(--navy)}
+.splitmod .srow input{width:70px;font:600 1rem var(--sans);text-align:right;border:1px solid var(--rule);padding:3px 6px}
+.splitmod .srow input:focus{outline:2px solid var(--navy);outline-offset:-1px}
+.splitmod .srow input.bad{border-color:#C42B48;background:#FBE4E8}
+.splitmod .srow b{width:70px;text-align:right;font:600 1rem var(--sans);padding-right:6px}
+.splitmod .serr{color:#C42B48;margin:8px 0 0}
+.splitmod .sbtns{display:flex;justify-content:space-between;gap:8px;margin-top:12px}
+.splitmod .sbtns button:disabled{opacity:.4;cursor:not-allowed}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.splitmod.shake{animation:shk .35s}
+table.dept td.rcell{white-space:nowrap}
+table.dept tr.multi td{vertical-align:top}
+table.dept .cline{display:flex;align-items:center;min-height:26px}
+table.dept .tcell .cline{justify-content:flex-end}
+table.dept td.rcell input{width:32px;min-width:32px;padding:3px 2px}
+table.dept td.rcell .rsl{color:#A0A0A0;font-size:.75rem;margin:0 1px 0 0}
+table.dept tr.cols th:nth-child(2),table.dept td:nth-child(2),
+table.dept tr.cols th:nth-child(4),table.dept td:nth-child(4),
+table.dept tr.cols th:nth-child(5),table.dept td:nth-child(5),
+table.dept tr.cols th:nth-child(6),table.dept td:nth-child(6),
+table.dept tr.cols th:nth-child(7),table.dept td:nth-child(7),
+table.dept tr.cols th:nth-child(11),table.dept td:nth-child(11){border-right:1px solid #E6E6E0}
+table.dept tr.grow th{background:none;border-bottom:0;padding:6px 8px 2px;text-align:center}
+table.dept tr.grow th.gh{border-bottom:2px solid var(--navy);color:var(--navy)}
+table.dept tr.cols th{padding-top:3px}
+table.dept .kstatic{font:500 .75rem var(--sans);color:#6E6E68;padding:3px 5px}
+table.dept td.zcell{white-space:nowrap}
+table.dept input.dz{width:calc(100% - 18px);min-width:76px;font:500 .75rem var(--sans);color:#6E6E68}
+table.dept input.dz::placeholder{color:#C2C2BC;opacity:1}
+table.dept input.dz:focus::placeholder{color:transparent}
+table.dept td.zv{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+table.dept input.dt.bad{border-color:#C42B48;background:#FBE4E8}
+table.dept input.dt.all{border-color:#000;background:#EAF4FF;font-weight:600}
+table.dept input:focus{outline:2px solid var(--navy);outline-offset:-1px;background:#fff}
+table.dept input.num,table.grp .num{text-align:right;font-variant-numeric:tabular-nums}
+table.grp td{font-variant-numeric:tabular-nums}
+table.grp td.gn{font-variant-numeric:normal;font-weight:500;color:var(--navy)}
+.gsch{font:600 .625rem var(--sans);color:#A0A0A0;margin-left:6px}
+.dbtn{appearance:none;background:none;border:1px solid var(--rule);font:500 .8125rem var(--sans);
+  color:var(--body);padding:7px 14px;cursor:pointer;margin-top:12px}
+.dbtn:hover{border-color:var(--navy);color:var(--navy)}
+.dbtn.go{border-color:var(--navy);color:var(--navy);font-weight:600}
+
+/* planner */
+.planhead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px}
+.planhead button{appearance:none;background:none;border:1px solid var(--rule);font:500 .8125rem var(--sans);
+  color:var(--body);padding:6px 12px;cursor:pointer}
+.planhead button:hover{border-color:var(--navy);color:var(--navy)}
+.planhead button:disabled{opacity:.5;cursor:default}
+#plansave{border-color:var(--navy);color:var(--navy);font-weight:600}
+.savemsg{font-size:.8125rem;color:#8A8A8A;flex-basis:100%;margin-top:-2px}
+.savemsg.ok{color:var(--green)}
+.savemsg.bad{color:var(--brick)}
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;align-items:start}
+@media (max-width:1000px){.plan{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:700px){.plan{grid-template-columns:1fr}}
+.pcol{border:1px solid var(--rule);padding:14px 14px 12px;min-width:0}
+.pcol h4{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font:600 .875rem var(--sans);color:var(--navy);margin:0 0 10px}
+.pcol h4 b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.pnote{font-size:.75rem;line-height:1.4;color:#8A8A8A;margin:-4px 0 11px;
+  border-left:2px solid var(--gold);padding-left:8px}
+.pnote:empty{display:none}
+details.pbuild{margin-top:2px}
+details.pbuild>summary{cursor:pointer;font:600 .75rem var(--sans);color:var(--navy);text-transform:uppercase;
+  letter-spacing:.06em;padding:6px 0;list-style:none;user-select:none}
+details.pbuild>summary::-webkit-details-marker{display:none}
+details.pbuild>summary::before{content:"\25B8";display:inline-block;width:1.1em;color:#8A8A8A}
+details.pbuild[open]>summary::before{content:"\25BE"}
+details.pbuild>summary:hover{color:var(--ink)}
+details.pbuild[open]>summary{margin-bottom:8px}
+.psub+.psub{margin-top:16px;padding-top:10px;border-top:1px solid var(--rule)}
+.prow.mrow .msup{grid-column:1 / -1;font-size:.6875rem;color:#8A8A8A;padding-left:50px;margin-top:-2px}
+.psubh{margin:0 0 8px;font:600 .75rem var(--sans);color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.prow{display:grid;grid-template-columns:46px minmax(0,1fr) 38px 62px 13px;gap:5px;
+  align-items:center;border-left:3px solid var(--rule);padding:5px 0 5px 3px;margin-bottom:5px;background:var(--t02)}
+.prow.mrow{grid-template-columns:46px minmax(0,1fr) 38px 62px 13px;background:#FBFAF8;align-items:center}
+.prow.mrow .mcode{font:600 .75rem var(--sans);padding-left:1px}
+.prow.mrow .mname{font:500 .8125rem var(--sans);color:var(--ink);min-width:0;width:100%;box-sizing:border-box;border:1px solid transparent;background:transparent;padding:2px 3px;text-overflow:ellipsis}
+.prow.mrow .mname:hover{border-color:var(--rule)}
+.prow.mrow .mname:focus{border-color:var(--navy);background:#fff;outline:none}
+.prow.mrow .mn{font:400 .8125rem var(--sans);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.prow.mrow .mlock{color:#C8C8C2;font-size:6px;text-align:center;line-height:1.9}
+.prow.info{grid-template-columns:58px minmax(0,1fr) 30px;background:#FAFAF8;border-left-color:#C8C8C2}
+.prow.info .icode{font:600 .6875rem var(--sans);color:#8A8A8A;letter-spacing:.02em;padding-top:4px}
+.prow.info .iname{font:400 .8125rem var(--sans);color:#6E6E68;line-height:1.35;padding-top:3px}
+.prow.info .iname small{display:block;font:400 .6875rem var(--sans);color:#9A9A94;margin-top:1px}
+.prow.info .in{font:400 .8125rem var(--sans);color:#9A9A94;text-align:right;
+  font-variant-numeric:tabular-nums;padding-top:3px}
+.prow input,.prow select{font:400 .8125rem var(--sans);color:var(--ink);border:1px solid var(--rule);
+  background:#fff;padding:4px 5px;min-width:0;width:100%}
+.prow input:focus,.prow select:focus{outline:2px solid var(--navy);outline-offset:-1px}
+.prow input[type=number]{-moz-appearance:textfield;text-align:right;font-variant-numeric:tabular-nums}
+.prow input[type=number]::-webkit-outer-spin-button,
+.prow input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.pkw{position:relative}
+.pkw select{color:transparent;padding:4px 2px;cursor:pointer}
+.pkw select option{color:var(--ink)}
+.kcode{position:absolute;left:0;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;
+  font:600 .75rem var(--sans);text-align:center}
+.kcar{position:absolute;right:4px;top:50%;margin-top:-1px;pointer-events:none;width:0;height:0;
+  border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:4px solid #9A9A9A}
+.pcost{font:500 .8125rem var(--sans);color:var(--navy);font-variant-numeric:tabular-nums;text-align:right}
+.pdel{appearance:none;background:none;border:0;color:#B4B4B4;align-self:start;margin-top:1px;
+  font:400 .875rem var(--sans);line-height:1;padding:0;cursor:pointer;width:100%}
+.pdel:hover{color:var(--brick)}
+.addrow{appearance:none;background:none;border:1px dashed var(--rule);width:100%;margin-top:9px;
+  font:500 .8125rem var(--sans);color:#8A8A8A;padding:7px;cursor:pointer}
+.addrow:hover{border-color:var(--navy);color:var(--navy)}
+.ptop{font-size:.75rem;font-variant-numeric:tabular-nums;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.ptop .cbgrp{font-weight:600;color:var(--navy);margin-bottom:3px}
+.ptop .cbrow{display:grid;grid-template-columns:minmax(0,1fr) auto 62px;gap:0 8px;align-items:baseline;margin-bottom:5px}
+.ptop .cbrow.ind .cbl{padding-left:8px}
+.ptop .cbl{color:var(--ink)}
+.ptop .cbc{color:#595959;text-align:right;white-space:nowrap}
+.ptop .cbrow b{text-align:right;color:var(--navy);font-weight:600}
+.ptop .cbrow small{grid-column:1 / -1;color:#8A8A8A;font-size:.6875rem;line-height:1.25;margin-top:-1px}
+.ptop .cbrow.ind small{padding-left:8px}
+.ptop .cbrow.off{opacity:.38}
+.ptop .cbgap{height:6px}
+.ptop .cbtot{margin-top:7px;padding-top:7px;border-top:2px solid var(--navy);margin-bottom:0}
+.ptop .cbtot .cbl{font-weight:600}
+.ptop .cbtot b{color:var(--ink);font-size:.875rem}
+.pfoot{margin-top:14px;padding-top:10px;border-top:1px solid var(--rule);font-size:.8125rem;
+  font-variant-numeric:tabular-nums}
+.pfoot div{display:flex;justify-content:space-between;gap:10px;margin-bottom:4px}
+.pfoot b{color:var(--navy);font-weight:600}
+.pfoot .bad b{color:var(--brick)}
+.pfoot .tot{margin-top:8px;padding-top:9px;border-top:2px solid var(--navy);margin-bottom:0}
+.pfoot .tot span{color:var(--ink);font-weight:500}
+.pfoot .tot b{color:var(--ink);font-size:.9375rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<div class="pagehead" id="pagehead">
+<h1>Modeling WBL Sections and Compensation</h1>
+<div class="headbtns">
+<button type="button" class="headbtn" id="goalsbtn">Goals of this Model</button>
+<button type="button" class="headbtn" id="cebtn">Details about CE-300</button>
+</div>
+</div>
+<div class="chartlayout">
+<div class="top" id="top"></div>
+
+<div class="chartbox">
+  <div class="chartscroll"><svg id="chart" role="img" aria-label="Students and cost by term, stacked by course type"></svg></div>
+  <div class="legendbox" id="legendbox"></div>
+</div>
+</div>
+
+<div class="totalbar" id="totalbar"></div>
+
+<div class="sec" id="deptsec" hidden>
+  <div class="dwrap">
+    <div><table class="dept"><thead>
+    <tr class="grow"><th colspan="7"></th>
+      <th colspan="4" class="gh">Dept for-credit</th>
+      <th colspan="4" class="gh">0-credit</th></tr>
+    <tr class="cols">
+      <th style="width:34px">Sch</th><th>Department/Program</th>
+      <th style="width:66px" class="helpable" data-help="pct" tabindex="0">%</th>
+      <th style="width:48px" id="dyrhead" class="helpable" data-help="yr">/1000</th>
+      <th style="width:96px" title="Students who complete through faculty-led research, taken out of the department before the term split. Enter a percentage or a headcount; the other follows.">Faculty-Led<span class="l2">Research</span></th>
+      <th style="width:96px" id="seedth" tabindex="0" aria-label="SEED">SEED</th>
+      <th style="width:84px" title="How this department's students are split across Summer / Fall / Spring. Click to change it for this department.">WBL Split<span class="l2">SM&nbsp; FL&nbsp; SP</span></th>
+      <th style="width:124px">Course</th>
+      <th style="width:92px" title="Summer students who go on to the credit course after their placement.">Summer<span class="l2">supplement</span></th>
+      <th style="width:84px" title="Fall students who stay in the department's own course. Tick IL to carry the section in an existing teaching load.">Fall</th>
+      <th style="width:84px" title="Spring students who stay in the department's own course. Tick IL to carry the section in an existing teaching load.">Spring</th>
+      <th style="width:110px" title="The department's own 0-credit course, if it has one. Departments that leave it blank take CE-300. Departments that type the same course share its sections.">Course</th>
+      <th style="width:52px" title="Students enrolled in the summer 0-credit class">Summer</th>
+      <th style="width:52px" title="Fall students leaving the department, minus those taking its own course that term">Fall</th>
+      <th style="width:52px" title="Spring students leaving the department, minus those taking its own course that term">Spring</th>
+    </tr></thead><tbody id="deptbody"></tbody></table></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="planhead">
+    <button type="button" id="plansave" hidden>Save as the default</button>
+    <span class="savemsg" id="savemsg"></span>
+  </div>
+  <div class="plan" id="plan"></div>
+</div>
+</div>
+
+<div class="imodal" id="imodal" role="dialog" aria-modal="true" aria-labelledby="imtitle" hidden>
+<div class="imdlg">
+<button type="button" class="imx" id="imclose" aria-label="Close">&times;</button>
+<h2 id="imtitle">Goals of this model:</h2>
+<ol>
+<li>Compensate all faculty, instructors, and research supervisors for their work.</li>
+<li>Create a robust, non-Departmental pathway for students to complete the Shared Gen Ed’s WBL requirement.</li>
+<li>Give a ‘course’ framework for WBL, even when it’s 0-credit, to support assigning and assessing students’ requirements, tracking completion on degree audits, etc.</li>
+<li>Provide students with a 0-credit, no-cost option for completing the WBL requirement, especially over the summer.</li>
+<li>Give students the option to earn academic credit for summer work experiences, provided the experience is approved by their department and the student then completes all additional requirements of their department’s internship course.</li>
+</ol>
+<hr class="imrule">
+<h2>The model includes:</h2>
+<div class="imsec imtight" style="margin-top:0">
+<p><b>SEED:</b> no incremental cost</p>
+<p><b>Faculty-led research:</b> $500/student from the Activity Fee</p>
+<p><b>Existing for-credit internship courses:</b> $6,250 for a full section, prorated at $250/student</p>
+<p><b>Existing 0-credit internship courses:</b> $2,500 for a full section, prorated at $100/student</p>
+</div>
+<div class="imsec imtight">
+<p><b>Credit-bearing fall supplements for summer experiences:</b> $150/student</p>
+<p>An option for students to enroll in their department’s credit-bearing internship course in the Fall semester after completing a 0-credit summer internship. During the first weeks of this course, students complete the academic and integrative assignments required to receive major credit for their experience.</p>
+</div>
+<div class="imsec imtight">
+<p><b><a href="#" class="imlink" id="celink">CE-300: Work-Based Learning Seminar:</a></b> $2,500 for a full section, prorated at $100/student</p>
+<p>A 0-credit course, administered by the Career Center and instructed by interested faculty, career center staff, and other qualified professionals. This course would, in theory, alleviate Departments’ and faculty’s concerns about ensuring every student completes a Shared Core requirement with an internship course in the student’s home department.</p>
+</div>
+</div></div>
+
+<div class="imodal" id="cemodal" role="dialog" aria-modal="true" aria-labelledby="cetitle" hidden>
+<div class="imdlg">
+<button type="button" class="imx" id="ceclose" aria-label="Close">&times;</button>
+<h2 id="cetitle">CE-300: Work-Based Learning Seminar</h2>
+<p>CE-300 provides a flexible, scalable course structure for students completing approved internships or other work-based learning. It is designed to create opportunities for instructor engagement with students’ work-based learning without requiring departments to assume the administrative burden of supporting every student's experience. It ensures consistent oversight for students while preserving departmental internship courses and other established WBL pathways.</p>
+<div class="imsec">
+<h3>Structure and Enrollment</h3>
+<p>Students will submit an experience for approval by designated staff in the Career Center prior to the start of their intended WBL term. If approved, the student will be registered for CE-300 for the following/relevant term.</p>
+<p>One large Workday section of CE-300 will house all registered students until a specified point prior to the start of the term, when the enrollees are divided into sections of 20-25 based on major and work placement. These sections may then be assigned to field-relevant instructors when possible.</p>
+</div>
+<div class="imsec">
+<h3>Instruction, Support, and Compensation</h3>
+<p>Suffolk faculty are welcomed and encouraged to teach CE-300, alongside qualified Career Center staff, other University staff, and potentially alumni or external adjunct instructors, subject to University approval. Assignments are supplemental and based on enrollment and instructional needs.</p>
+<p>The Career Center coordinates approval of students’ experiences, enrollment, common course materials, performance evaluation tools, employer support, and escalation of workplace concerns. The Center also serves as the primary point of contact for students with urgent concerns requiring timely attention.</p>
+<p>CE-300 instructors provide academic guidance, student support, and assessment rather than managing placements. Responsibilities include leading an initial synchronous online orientation (offered at two or more times to accommodate students’ schedules), meeting individually with each student (typically via Zoom) near the midpoint of their experience, responding to questions or concerns within two business days, and assessing final requirements, including student and supervisor performance evaluations, an updated résumé, and a reflection and updated Career Plan v3.0. Students are directed to the Career Center for concerns requiring more immediate attention.</p>
+<p>Sections will have a target enrollment of 20-25 students. Instructors will be compensated at $100 per student ($2,000-$2,500 per section), with a floor of 15 students/$1500.</p>
+<p>All assignments are supplemental and based on enrollment and instructional needs.</p>
+</div>
+</div></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. shape
+   ============================================================ */
+var TERMS=[{id:"summer",label:"Summer"},{id:"fall1",label:"SM\u2192FL"},
+           {id:"fall",label:"Fall"},{id:"spring",label:"Spring"}];
+
+/* validated against the palette checker; reused in order as types are added */
+var SWATCH=["#17788A","#C42B48","#6B4FA8","#CE7A52","#3C9DD0","#2AAE95","#A8468F","#7E3A28"];
+
+var PARAMS={students:1000, summerPct:60, max:25, frRate:500, pay0:100, payF1:150, payCr:250, floor:5, min:15};
+
+var TYPES=[
+  {id:"t3", code:"DC", name:"Dept for-credit"},
+  {id:"t5", code:"D0", name:"Dept 0-credit"},
+  {id:"t1", code:"CE", name:"CE-300"},
+  {id:"tF", code:"FR", name:"Faculty-led research"},
+  {id:"tS", code:"SD", name:"SEED"}
+];
+/* The four types are fixed, each tied to a property of the section rather than
+   chosen by hand: CE = the generic CE-300 pool, D0 = a department's own 0-credit
+   course, DC = a department's for-credit course in fall or spring, SC = an SM\u2192FL
+   (summer credit) course. Only the name, colour and order can change; the code is fixed. */
+var TYPE_CODES={t1:"CE",t5:"D0",t3:"DC",tF:"FR",tS:"SD"};
+var typeSeq=5;
+/* captured before any saved copy is adopted, so Reset really does go home */
+var DEF=null;   /* filled once DEPTS exists, just below */
+function colorOf(i){
+  var ty=TYPES[i];
+  return (ty&&ty.color)?ty.color:SWATCH[i%SWATCH.length];
+}
+/* The model gives four types a job, found by id so dragging the table into a
+   new order never changes which type does what. An older plan missing one of
+   those ids falls back to the position it used to hold. */
+function roleType(id,pos){
+  for(var i=0;i<TYPES.length;i++)if(TYPES[i].id===id)return TYPES[i];
+  return TYPES[pos]||TYPES[TYPES.length-1];
+}
+function typeAt(id){ for(var i=0;i<TYPES.length;i++)if(TYPES[i].id===id)return TYPES[i]; return TYPES[0]; }
+function typeIndex(id){ for(var i=0;i<TYPES.length;i++)if(TYPES[i].id===id)return i; return 0; }
+function typeColor(id){ return colorOf(typeIndex(id)); }
+
+var PLAN={summer:[],fall1:[],fall:[],spring:[]};
+/* The department / program picker. null means every student; otherwise the names of
+   the departments the chart is limited to. Not saved with the plan. */
+var SEL=null;
+var PICK={all:true,schools:{},depts:{}};
+function out(d){ return !!d.o||(SEL!==null&&!SEL[d.n]); }
+/* course type chosen by hand on a managed section, keyed by its src, so the
+   choice survives the next resync */
+/* version of the department weightings; a plan saved under an older one takes the new shares */
+var WV=2;
+/* version of the course pull values; a plan saved under an older one takes the shipped courses and counts */
+var PV=1;
+/* version of the SEED headcounts; a plan saved under an older one takes the shipped numbers */
+var EV=3;
+/* version of the default type order (for-credit, 0-credit, CE-300, faculty-led research, SEED, SM-to-FL); a plan saved under an older one takes it, and can be reordered by dragging after */
+var TV=2;
+var WBL_NAME="WBL Seminar";   /* default name of every 0-credit CE section */
+var TOVR={};
+var NOVR={};   /* by-hand section names, keyed like TOVR */
+
+/* Declared-major shares, Fall 2026, with spring/summer/fall 2026 starters and
+   undeclared records removed. Groups seeded as cognate clusters; edit freely. */
+/* s school · n department · p share of declared majors
+   g the 0-credit section this department's students sit in; departments sharing
+     a name share sections, and a name of its own gives it a section of its own
+   o held out of the model · k the department's for-credit course
+   f1/fa/sp students pulled into that course in Fall 1, Fall, Spring, as a count,
+     or "all" for the whole term cohort
+   c two years of actual registrations, kept as a tooltip */
+var DEPTS=[
+ ["CAS","PSLS: Poli Sci and IR",7.49,"","","POLS-534","1","6","9","POLS 534 / 523 / 525: 51 registrations over two years"],
+ ["CAS","PSLS: Legal Studies",7.89,"","","LAWU-521","","14","11","LAWU 521 / 534: 61 over two years"],
+ ["CAS","Psychology",9.76,"","","PSYCH-350","14","29","33","PSYCH 350, required, 4 cr: 176 over two years"],
+ ["CAS","Criminal Justice",5.79,"Sociology, Criminal Justice & Humanities","","CJU-483","","","11","CJU 483 / 484: 153 students. CJU 483 / 484 and SOC 483 together: 25 registrations over two years"],
+ ["CAS","Sociology",1.10,"Sociology, Criminal Justice & Humanities","","SOC-483","","","2","SOC 483. CJU 483 / 484 and SOC 483 together: 25 registrations over two years"],
+ ["CAS","English",1.86,"Sociology, Criminal Justice & Humanities","","ENG-514","1","7","4","ENG 514 / 503: 19"],
+ ["CAS","Global Humanities",2.52,"Sociology, Criminal Justice & Humanities","","GCS-503","","3","6","GCS 503, HST 522, SPAN 504: 26"],
+ ["CAS","Biology",5.54,"Life & Health Sciences","","BIO-503","1","5","4","BIO 503: 15"],
+ ["CAS","Chemistry and Biochemistry",1.12,"Life & Health Sciences","","CHEM-503","","3","1","CHEM 503: 4"],
+ ["CAS","Environmental Science and Studies",0.93,"Life & Health Sciences","","ENVS-503","","","3","ENVS 503: 5"],
+ ["CAS","Radiation Sciences BS",0.71,"Life & Health Sciences","","RAD-503","","","","RAD 503: no registrations in the 2024-26 file"],
+ ["CAS","Radiation Therapy",0.42,"","omit","RAD 341-4","","","","clinical sequence, RAD 341 through 344; held out of the model"],
+ ["CAS","Math and Computer Science",2.55,"Computing & Information Systems","","CMPSC-502","","6","","CMPSC 502: 8"],
+ ["CAS","Cybersecurity",0.02,"Computing & Information Systems","","ISOM-520","3","2","1","shares ISOM 520 with Information Systems"],
+ ["SBS","ISOM",4.58,"Computing & Information Systems","","ISOM-520","1","1","1","ISOM 520 / 560: 23"],
+ ["CAS","Communication Journalism and Media",3.43,"Media, Arts & Communication","","CJN-505","1","2","8","CJN 505: 24"],
+ ["CAS","A&D: Interior Design",2.03,"Art & Design","","ADI-400","","1","2","ADI 400. ADFA / ADG / ADI 400, all required: 12 in all across three codes"],
+ ["CAS","A&D: Graphic Design",1.15,"Art & Design","","ADG-337","","0","16","ADG 337. ADFA / ADG / ADI 400, all required: 12 in all across three codes"],
+ ["CAS","A&D: Studio Art",0.43,"Art & Design","","ADFA-400","2","0","3","ADFA 400. ADFA / ADG / ADI 400, all required: 12 in all across three codes"],
+ ["CAS","Theatre",1.10,"Media, Arts & Communication","","THETR-488","1","1","1","THETR 488: 5"],
+ ["SBS","Marketing",8.95,"Marketing & Sport","","MKT-520","1","","19","MKT 520: 31"],
+ ["CAS","Advertising, PR and Social Media",4.33,"ADPR CE-300","","ADPR-503","5","17","24","ADPR 503, tightly structured: 94 over two years"],
+ ["SBS","Sports Management",1.48,"Marketing & Sport","","SPMT-520","","1","1","SPMT 520 / 521: 15"],
+ ["SBS","Finance",8.25,"FIN-560","","FIN-520","","","","FIN 560 required at 0 cr: 158. FIN 520 for credit: 0."],
+ ["SBS","Accounting",3.93,"ACCT-560","","ACCT-520","","1","","ACCT 560 at 0 cr: 66. ACCT 520 for credit: 7. H521 Winternship: 39."],
+ ["SBS","Business Economics",1.71,"Economics","","EC-503","1","","1","EC 503, shared with Economics: 11"],
+ ["CAS","Economics",1.75,"Economics","","EC-503","1","2","3","EC 503, shared with Business Economics: 11"],
+ ["SBS","Management Studies",4.17,"Management, Strategy & Entrepreneurship","","MGT-520","1","0","4","MGT 520, SBS 520 / 521 / 522: 35"],
+ ["SBS","Strategy and International Business",2.53,"Management, Strategy & Entrepreneurship","","SIB-520","0","2","1","SIB 520: 3"],
+ ["SBS","Entrepreneurship",2.41,"Management, Strategy & Entrepreneurship","","ENT-521","","","3","ENT 521: 8"],
+ ["SBS","Supply Chain Management",0.09,"Management, Strategy & Entrepreneurship","","SCM-520","","","","SCM 520: 0 registrations in two years"]
+].map(function(r){return {s:r[0],n:r[1],p:parseFloat(r[2]),g:r[3],o:r[4]==="omit",
+  k:r[5],f1:String(r[6]||""),fa:String(r[7]||""),sp:String(r[8]||""),c:r[9]||"",
+  lf1:false,lfa:false,lsp:false,fm:"n",fv:0,sm:"n",tsu:null,tfa:null,   /* per-department summer / fall shares, null = the default split */
+  
+  /* SEED students per department for the year (twice the per-semester counts), as a headcount */
+  sv:({"Accounting":16,"Advertising, PR and Social Media":12,"Economics":2,"Entrepreneurship":4,
+       "Finance":20,"Global Humanities":2,"ISOM":8,"Management Studies":10,"Marketing":24,
+       "Math and Computer Science":2,"PSLS: Legal Studies":4,"PSLS: Poli Sci and IR":2,"Strategy and International Business":2,
+       "A&D: Graphic Design":12,"A&D: Interior Design":2})[r[1]]||0,
+  /* further for-credit courses the department runs, each with its own three terms */
+  z:{"Finance":"FIN-560","Accounting":"ACCT-560"}[r[1]]||"",
+  zt:!!{"Finance":1,"Accounting":1}[r[1]],   /* FL/SP: the 0-credit course also runs fall and spring */
+  x:(function(n){
+    var X={
+      "Accounting":[["ACCT-H521","","","5"]],
+      "PSLS: Legal Studies":[["LAWU-534","1","3","10"]],
+      "Sports Management":[["SPMT-521","","","11"]]};
+    return (X[n]||[]).map(function(q){
+      return {k:q[0],f1:q[1],fa:q[2],sp:q[3],lf1:false,lfa:false,lsp:false}; });
+  })(r[1])};});
+
+/* captured before any saved copy is adopted, so Reset really does go home */
+DEF={p:JSON.parse(JSON.stringify(PARAMS)),t:JSON.parse(JSON.stringify(TYPES)),
+     q:typeSeq,d:JSON.parse(JSON.stringify(DEPTS))};
+
+/* per department: its cohort each term, and how much of that cohort stays in
+   the course the department already owns. Fall 1 is drawn from the summer
+   cohort, not added to it, so it never leaves the pool short. */
+/* Faculty-led research and SEED students leave a department before the
+   term split. Each is entered as a percentage or a headcount (the last one
+   typed is the one that is kept), and together they cannot exceed the
+   department's students. */
+/* Every count is a whole number from here on, so a reader can follow each
+   student: a department's students for the year are rounded once, and what the
+   grid shows is the number used afterwards. A department in the model never has
+   fewer than PARAMS.floor students, however small its share. */
+function deptBase(d,tot){
+  var raw=d.p/(tot||1)*PARAMS.students;
+  return Math.round((d.p>0&&!d.o)?Math.max(PARAMS.floor,raw):raw);
+}
+function removalCount(mode,v,base,room){
+  var c=(mode==="p")?base*Math.round(Math.min(100,Math.max(0,v)))/100:Math.max(0,v);
+  return Math.max(0,Math.min(Math.round(c),Math.floor(room+1e-9)));
+}
+function deptRemoval(d,tot){
+  var base=deptBase(d,tot);
+  var fr=removalCount(d.fm,d.fv,base,base);
+  var sd=removalCount(d.sm,d.sv,base,base-fr);
+  return {base:base,fr:fr,sd:sd};
+}
+function removalTotals(){
+  var tot=deptTotal(), fr=0, sd=0;
+  DEPTS.forEach(function(d){ if(out(d))return; var r=deptRemoval(d,tot); fr+=r.fr; sd+=r.sd; });
+  return {fr:fr,sd:sd};
+}
+/* A department's split across Summer / Fall / Spring. By default summer is the
+   variable at the top and fall and spring share the rest; a department can carry
+   its own summer and fall shares, with spring taking what is left. */
+function splitDefault(){ var su=PARAMS.summerPct, f=(100-su)/2; return {su:su,fa:f,sp:f,mod:false}; }
+function deptSplit(d){
+  if(typeof d.tsu==="number"&&typeof d.tfa==="number"&&d.tsu+d.tfa<=100+1e-9)
+    return {su:d.tsu,fa:d.tfa,sp:100-d.tsu-d.tfa,mod:true};
+  return splitDefault();
+}
+function fmtPct(v){ return String(Math.round(v*10)/10); }
+function splitLabel(d){ var x=deptSplit(d); return fmtPct(x.su)+"/"+fmtPct(x.fa)+"/"+fmtPct(x.sp); }
+function deptShare(d,tot){
+  var rm=deptRemoval(d,tot);
+  var y=rm.base-rm.fr-rm.sd, has=hasCourse(d);
+  /* summer takes its share of the year; fall and spring split what remains, fall
+     taking the extra student when it does not divide evenly */
+  var spl=deptSplit(d);
+  var sum=Math.round(y*spl.su/100), left=y-sum, fa;
+  if(spl.mod){ var den=spl.fa+spl.sp; fa=den>0?Math.round(left*spl.fa/den):0; }
+  else fa=Math.round(left/2);
+  var sp=left-fa;
+  var o1=has?pullVal(d.f1,sum):0, oa=has?pullVal(d.fa,fa):0, os=has?pullVal(d.sp,sp):0;
+  /* a second course draws on what the first left in the term's cohort */
+  var xs=(d.x||[]).map(function(x){
+    var h=hasCourse(x), a=h?pullVal(x.f1,sum):0,
+        b=h?pullVal(x.fa,fa-oa):0, c=h?pullVal(x.sp,sp-os):0;
+    o1+=a; oa+=b; os+=c;
+    return {f1:a,fa:b,sp:c};
+  });
+  return {year:y, summer:sum, fall:fa, spring:sp,
+          ownF1:o1, ownFa:oa, ownSp:os, x:xs};
+}
+function hasCourse(d){ return !!d.k && d.k!=="-"; }
+/* A full course is four credits in CAS and three in SBS. EC-503 is three
+   wherever the student sits, because the two economics departments share it. */
+function deptCredits(d){
+  if(d.k==="EC-503")return 3;
+  return d.s==="SBS"?3:4;
+}
+/* a managed row carries its own credit count; anything else takes its type's */
+function rowCredits(r){
+  return (r&&typeof r.cr==="number")?r.cr:typeCredits(typeAt(r&&r.t));
+}
+/* A type's kind sets its pay: 0-credit and for-credit use the two rates in the
+   top controls. A section carried in load (the IL toggle in the Departments
+   table) costs nothing new whatever its type. */
+function typeKind(ty){
+  if(!ty)return "zero";
+  return ({t3:"credit",tF:"fr",tS:"seed"})[ty.id]||"zero";
+}
+/* what a section actually pays per student: nothing when it is carried in load */
+function rowRate(r){ return (r&&r.il)?0:typeRate(typeAt(r&&r.t)); }
+function typeRate(ty){
+  var k=typeKind(ty);
+  return k==="credit"?PARAMS.payCr:(k==="fall1"?PARAMS.payF1:(k==="fr"?PARAMS.frRate:(k==="seed"?0:PARAMS.pay0)));
+}
+function typeCredits(ty){ var k=typeKind(ty); return (k==="credit"||k==="fall1")?3:0; }
+/* a pull is a headcount, or "all" for the whole term cohort, and never more
+   than the cohort itself. Anything else counts as zero (the cell shows it red). */
+function pullState(raw){
+  var t=String(raw===undefined||raw===null?"":raw).trim();
+  if(!t)return "empty";
+  if(/^all$/i.test(t))return "all";
+  return /^\d+$/.test(t)?"num":"bad";
+}
+function pullVal(raw,cohort){
+  var t=String(raw===undefined||raw===null?"":raw).trim();
+  if(!t)return 0;
+  if(/^all$/i.test(t))return cohort;
+  if(!/^\d+$/.test(t))return 0;
+  return Math.min(parseInt(t,10), cohort);
+}
+function DCPAY(){ return PARAMS.payCr; }
+function deptTotal(){ var t=0; DEPTS.forEach(function(d){t+=d.p;}); return t||1; }
+
+function deptGroups(){
+  var tot=deptTotal(), map={}, order=[];
+  function grp(key,z){
+    if(!map[key]){map[key]={name:key,z:z,pct:0,sch:{},n:0,summer:0,fall:0,spring:0,
+      ownF1:0,ownFa:0,ownSp:0};order.push(key);}
+    return map[key];
+  }
+  DEPTS.forEach(function(d){
+    if(out(d))return;
+    /* one generic CE-300 pool across every major. A department that names its own
+       0-credit course (ACCT-560, say) sends its summer students there, and its fall
+       and spring students too when FL/SP is on; otherwise those two terms go to
+       CE-300. Departments naming the same course share its sections. */
+    var z=(d.z||"").trim(), v=deptShare(d,tot);
+    var kSu=z||"CE-300", kTail=(z&&d.zt)?z:"CE-300";
+    var gs=grp(kSu,z&&kSu===z?z:""), gt=grp(kTail,kTail===z?z:"");
+    gs.pct+=d.p; gs.sch[d.s]=1; gs.n++;
+    gs.summer+=v.summer;
+    gt.fall+=v.fall; gt.spring+=v.spring;
+    gt.ownFa+=v.ownFa; gt.ownSp+=v.ownSp; gs.ownF1+=v.ownF1;
+  });
+  return order.map(function(key){
+    var g=map[key], cap=Math.max(1,PARAMS.max);
+    g.year=g.summer+g.fall+g.spring;
+    g.own=g.ownFa+g.ownSp;
+    g.poolFa=Math.max(0,g.fall-g.ownFa);
+    g.poolSp=Math.max(0,g.spring-g.ownSp);
+    g.schools=Object.keys(g.sch).sort().join("+");
+    g.secSu=Math.ceil(g.summer/cap-1e-9);
+    g.secFa=Math.ceil(g.poolFa/cap-1e-9);
+    g.secSp=Math.ceil(g.poolSp/cap-1e-9);
+    return g;
+  });
+}
+
+/* one place for "a department line changed": resync its sections, redraw */
+function deptChanged(rebuildTable){
+  syncAll(); savePlan();
+  if(rebuildTable)buildDepts();
+  buildPlanRows(); go();
+}
+
+function paintPull(el){
+  var st=pullState(el.value);
+  el.classList.toggle("bad",st==="bad"); el.classList.toggle("all",st==="all");
+}
+/* Departments run A to Z by their for-credit course; those with no course go last */
+function sortDepts(){
+  function key(d){ var k=(d.k||"").trim(); return (k==="-")?"":k; }
+  DEPTS.sort(function(a,b){
+    var x=key(a), y=key(b);
+    if(!x!==!y)return x?-1:1;
+    return x.localeCompare(y,undefined,{numeric:true,sensitivity:"base"});
+  });
+}
+/* a department's first course, then any extra courses, one line each in the cell */
+function xAttr(xi){ return xi===undefined?"":" data-x='"+xi+"'"; }
+function courseCells(d,i,f,off,mk){
+  return mk(d,undefined)+(d.x||[]).map(function(x,xi){ return mk(x,xi); }).join("");
+}
+/* the course an input belongs to: the department itself, or one of its extras */
+function courseOf(el){
+  var d=DEPTS[+el.dataset.i];
+  return el.dataset.x===undefined?d:d.x[+el.dataset.x];
+}
+function buildDepts(){
+  sortDepts();
+  document.getElementById("deptbody").innerHTML=DEPTS.map(function(d,i){
+    var L={f1:"lf1",fa:"lfa",sp:"lsp"}, has=hasCourse(d)&&!d.o;
+    return "<tr class='"+(d.o?"dout ":"")+((d.x&&d.x.length)?"multi":"")+"'"+((SEL!==null&&!SEL[d.n])?" hidden":"")+"><td class='sch'>"+d.s+"</td>"+
+      "<td"+(d.c?" title='"+esc(d.c)+"'":"")+">"+esc(d.n)+"</td>"+
+      "<td class='pct'><span class='helpable' data-help='pct' tabindex='0'>"+d.p.toFixed(2)+"%</span></td>"+
+      "<td class='num dyr helpable' data-help='yrval'></td>"+
+      ["f","s"].map(function(k){
+        if(d.o)return "<td class='rcell'></td>";   /* a held-out row keeps only its share, count and course */
+        return "<td class='rcell'><input class='rp num' data-i='"+i+"' data-k='"+k+
+          "' placeholder='0' aria-label='Percent'"+(d.o?" disabled":"")+"><span class='rsl'>%</span>"+
+          "<input class='rn num' data-i='"+i+"' data-k='"+k+"' placeholder='0' aria-label='Students'"+(d.o?" disabled":"")+"></td>";}).join("")+
+      (d.o?"<td></td>":"<td class='spcell'><button type='button' class='splitbtn' data-i='"+i+"'></button></td>")+
+      "<td class='kcell'>"+(d.o?"<div class='cline'><span class='kstatic'>"+esc(d.k)+"</span></div>":courseCells(d,i,undefined,d.o,function(o,xi){
+        var h=hasCourse(o)&&!d.o;
+        /* Accounting's Winternship course is fixed text with a footnote */
+        if(xi!==undefined&&o.k==="ACCT-H521")
+          return "<div class='cline'><span class='kstatic helpable' data-help='h521' tabindex='0'>ACCT-H521<span class='redstar'>*</span></span></div>";
+        return "<div class='cline'><input class='dkc' data-i='"+i+"'"+xAttr(xi)+" value='"+esc(o.k)+
+          "' placeholder='none'"+(d.o?" disabled":"")+"></div>";}))+"</td>"+
+      ["f1","fa","sp"].map(function(f){
+        if(d.o)return "<td class='tcell'></td>";
+        return "<td class='tcell'>"+courseCells(d,i,f,d.o,function(o,xi){
+          var h=hasCourse(o)&&!d.o;
+          var inp="<input class='dt num' data-i='"+i+"'"+xAttr(xi)+" data-f='"+f+"' value='"+
+            esc(o[f]||"")+"' placeholder='0' title='A headcount, or the word all "+
+            "for the whole term cohort'"+(h?"":" disabled")+">";
+          /* the summer supplement takes a plus sign where the others carry IL */
+          if(f==="f1")return "<div class='cline'>"+inp+"<span class='plussign' aria-hidden='true'>+</span></div>";
+          return "<div class='cline'>"+inp+
+            "<button type='button' class='il"+(o[L[f]]?" on":"")+"' data-i='"+i+"'"+xAttr(xi)+
+            " data-f='"+L[f]+"'"+(h?"":" disabled")+
+            " title='Carry this section in an existing teaching load'>IL</button></div>";});}).join("")+
+      (d.o?"<td></td>":"<td class='zcell'><input class='dz' data-i='"+i+"' value='"+esc(d.z||"")+"' placeholder='CE-300' aria-label='Dept 0-credit course'>"+
+        "<button type='button' class='il fs"+(d.zt?" on":"")+"' data-i='"+i+"'"+((d.z||"").trim()?"":" disabled style='visibility:hidden'")+
+        " title='Run this course in fall and spring as well as summer'>FL<br>SP</button></td>")+
+      "<td class='zv'></td><td class='zv'></td><td class='zv'></td></tr>";
+  }).join("");
+  document.querySelectorAll(".splitbtn").forEach(function(b){
+    b.addEventListener("click",function(){ openSplit(+this.dataset.i); });
+  });
+  document.querySelectorAll(".dz").forEach(function(e){
+    e.addEventListener("input",function(){
+      DEPTS[+this.dataset.i].z=this.value.trim();
+      /* the FL/SP toggle only means something once a course is written in */
+      var b=this.parentNode.querySelector(".fs"), has=!!this.value.trim();
+      if(b){ b.disabled=!has; b.style.visibility=has?"visible":"hidden"; }
+      deptChanged(); });
+  });
+  document.querySelectorAll(".il.fs").forEach(function(b){
+    b.addEventListener("click",function(){
+      var d=DEPTS[+this.dataset.i];
+      d.zt=!d.zt; this.classList.toggle("on",d.zt); deptChanged(); });
+  });
+  document.querySelectorAll(".dkc").forEach(function(e){
+    e.addEventListener("change",function(){
+      courseOf(this).k=this.value.trim(); deptChanged(true); });
+  });
+  document.querySelectorAll(".il:not(.fs)").forEach(function(e){
+    e.addEventListener("click",function(){
+      var d=DEPTS[+this.dataset.i], o=courseOf(this), f=this.dataset.f;
+      o[f]=!o[f]; this.classList.toggle("on",o[f]);
+      /* the toggle is the department's answer, so it clears any by-hand
+         type chosen on those sections */
+      var pre="d|"+d.n+"|"+(this.dataset.x===undefined?"":"x"+this.dataset.x)+f.slice(1)+"#";
+      Object.keys(TOVR).forEach(function(k){if(k.indexOf(pre)===0)delete TOVR[k];});
+      deptChanged(); });
+  });
+  document.querySelectorAll(".dt").forEach(function(e){
+    paintPull(e);
+    e.addEventListener("input",function(){
+      courseOf(this)[this.dataset.f]=this.value;
+      paintPull(this); deptChanged(); });
+    /* a value that is not a whole number or "all" is thrown away on leaving the box */
+    e.addEventListener("blur",function(){
+      if(pullState(this.value)!=="bad")return;
+      this.value=""; courseOf(this)[this.dataset.f]="";
+      paintPull(this); deptChanged(); });
+  });
+  document.querySelectorAll(".rp,.rn").forEach(function(e){
+    e.addEventListener("input",function(){
+      var d=DEPTS[+this.dataset.i], k=this.dataset.k, pct=this.classList.contains("rp");
+      var v=parseInt(this.value.replace(/\D/g,""),10);
+      v=isNaN(v)?0:(pct?Math.min(100,v):v);
+      d[k+"m"]=pct?"p":"n"; d[k+"v"]=v;   /* whichever was typed is the one kept */
+      deptChanged(); });
+    e.addEventListener("blur",refreshRemoval);
+  });
+}
+
+/* keep the two fields of each pair in step; the box being typed in is left alone */
+/* A small dialog for one department's Summer / Fall / Spring split. Spring takes
+   whatever Summer and Fall leave, so it cannot be closed while they add to more
+   than 100. */
+var SPLITM=null;
+function openSplit(i){
+  var d=DEPTS[i]; if(!d||SPLITM)return;
+  var cur=deptSplit(d);
+  var ov=document.createElement("div"); ov.className="splitov";
+  ov.innerHTML="<div class='splitmod' role='dialog' aria-label='Term split'>"+
+    "<h3>"+esc(d.n)+"</h3>"+
+    "<p>Share of this department's students in each term. Spring takes the rest.</p>"+
+    "<div class='srow'><label>Summer</label><input class='ssu' inputmode='decimal' value='"+fmtPct(cur.su)+"'><span>%</span></div>"+
+    "<div class='srow'><label>Fall</label><input class='sfa' inputmode='decimal' value='"+fmtPct(cur.fa)+"'><span>%</span></div>"+
+    "<div class='srow'><label>Spring</label><b class='ssp'>"+fmtPct(cur.sp)+"</b><span>%</span></div>"+
+    "<p class='serr' hidden>Summer and Fall add to more than 100%. Lower one of them to close.</p>"+
+    "<div class='sbtns'><button type='button' class='dbtn srev'></button>"+
+    "<button type='button' class='dbtn go sdone'>Done</button></div></div>";
+  document.body.appendChild(ov);
+  var su=ov.querySelector(".ssu"), fa=ov.querySelector(".sfa"), sp=ov.querySelector(".ssp"),
+      err=ov.querySelector(".serr"), done=ov.querySelector(".sdone"), rev=ov.querySelector(".srev");
+  function num(el){ var v=parseFloat(String(el.value).replace(/[^0-9.]/g,"")); return isNaN(v)?0:Math.min(100,v); }
+  function label(){ var x=splitDefault(); rev.textContent="Revert to "+fmtPct(x.su)+"/"+fmtPct(x.fa)+"/"+fmtPct(x.sp); }
+  function valid(){ return num(su)+num(fa)<=100+1e-9; }
+  function sync(){
+    var ok=valid(), s2=num(su), f2=num(fa);
+    sp.textContent=ok?fmtPct(100-s2-f2):"over";
+    sp.style.color=ok?"":"#C42B48"; err.hidden=ok; done.disabled=!ok;
+    su.classList.toggle("bad",!ok); fa.classList.toggle("bad",!ok);
+    if(!ok)return;
+    var def=splitDefault();
+    if(Math.abs(s2-def.su)<1e-9&&Math.abs(f2-def.fa)<1e-9){ d.tsu=null; d.tfa=null; }
+    else{ d.tsu=s2; d.tfa=f2; }
+    deptChanged();
+  }
+  function tryClose(){
+    if(!valid()){ err.hidden=false; ov.querySelector(".splitmod").classList.add("shake");
+      setTimeout(function(){ var m=ov.querySelector(".splitmod"); if(m)m.classList.remove("shake"); },400); return; }
+    ov.remove(); document.removeEventListener("keydown",key,true); SPLITM=null;
+  }
+  function key(e){ if(e.key==="Escape"){ e.preventDefault(); tryClose(); } }
+  su.addEventListener("input",sync); fa.addEventListener("input",sync);
+  done.addEventListener("click",tryClose);
+  rev.addEventListener("click",function(){
+    d.tsu=null; d.tfa=null; var x=splitDefault();
+    su.value=fmtPct(x.su); fa.value=fmtPct(x.fa); sync(); });
+  ov.addEventListener("pointerdown",function(e){ if(e.target===ov)tryClose(); });
+  document.addEventListener("keydown",key,true);
+  label(); SPLITM=ov; su.focus(); su.select();
+}
+function refreshRemoval(){
+  var tot=deptTotal(), act=document.activeElement, box={};
+  document.querySelectorAll(".rp,.rn").forEach(function(e){
+    box[e.dataset.i+e.dataset.k+(e.classList.contains("rp")?"p":"n")]=e; });
+  DEPTS.forEach(function(d,i){
+    var rm=deptRemoval(d,tot);
+    ["f","s"].forEach(function(k){
+      var cnt=rm[k==="f"?"fr":"sd"], pct;
+      if(d[k+"m"]==="p")pct=Math.round(d[k+"v"]);
+      else pct=rm.base>0?Math.round(cnt/rm.base*100):0;
+      var bp=box[i+k+"p"], bn=box[i+k+"n"];
+      if(bp&&bp!==act)bp.value=pct?String(pct):"";
+      if(bn&&bn!==act)bn.value=cnt?String(cnt):"";
+    });
+  });
+}
+function renderGroups(){
+  var tot=0; DEPTS.forEach(function(d){tot+=d.p;});
+  document.getElementById("dyrhead").textContent="/"+fmtInt(PARAMS.students);
+  document.querySelectorAll("#deptbody .dyr").forEach(function(td,i){
+    td.textContent=n0(deptBase(DEPTS[i],tot));
+  });
+  refreshRemoval();
+  document.querySelectorAll(".splitbtn").forEach(function(b){
+    var d=DEPTS[+b.dataset.i]; if(!d)return;
+    b.textContent=splitLabel(d); b.classList.toggle("mod",deptSplit(d).mod); });
+  /* what each department sends to its 0-credit class: all of summer, and each
+     of fall and spring less those who stay in a departmental course that term */
+  var trs=document.querySelectorAll("#deptbody tr");
+  DEPTS.forEach(function(d,i){
+    var cells=trs[i]?trs[i].querySelectorAll("td.zv"):[];
+    if(!cells.length)return;
+    if(d.o){ for(var q=0;q<3;q++)cells[q].textContent=""; return; }
+    var v=deptShare(d,tot);
+    cells[0].textContent=n0(v.summer);
+    cells[1].textContent=n0(Math.max(0,v.fall-v.ownFa));
+    cells[2].textContent=n0(Math.max(0,v.spring-v.ownSp));
+  });
+}
+
+/* The Radiation Therapy clinical sequence. These rows are shown so nobody has to
+   ask whether we forgot them, and they are counted nowhere: not in seats, not in
+   the gap to target, not in cost. */
+var CLINICALS={
+  fall:[["RAD-341","Radiation Therapy Rotation I","3 credits, junior year"],
+        ["RAD-343","Radiation Therapy Rotation III","6 credits, senior year"]],
+  spring:[["RAD-342","Radiation Therapy Rotation II","4 credits, junior year"],
+          ["RAD-344","Radiation Therapy Rotation IV","6 credits, senior year"]]
+};
+function omittedStudents(){
+  var tot=deptTotal(), out=0;
+  DEPTS.forEach(function(d){ if(d.o)out+=deptBase(d,tot); });
+  return out;
+}
+function ensureClinicals(){
+  var n=Math.round(omittedStudents());
+  Object.keys(CLINICALS).forEach(function(term){
+    CLINICALS[term].forEach(function(c){
+      var row=null;
+      PLAN[term].forEach(function(r){if(r.info&&r.code===c[0])row=r;});
+      if(row){row.n=n;return;}
+      PLAN[term].push({info:true,t:null,code:c[0],name:c[1],note:c[2],n:n});
+    });
+  });
+}
+
+/* How many sections a pool of students is cut into. The cap sets the most it
+   would take; the minimum (not shown on the page) stops a pool being cut into
+   sections smaller than that, even if that leaves one slightly over the cap.
+   The students are then divided as evenly as possible. */
+function sectionCount(total,cap){
+  var n=Math.max(1,Math.ceil(total/cap-1e-9));
+  while(n>1&&total/n<PARAMS.min)n--;
+  return n;
+}
+function pushSplit(term,typeId,label,total,cap){
+  total=Math.round(total); if(total<=0)return;
+  var n=sectionCount(total,cap), base=Math.floor(total/n), left=total-base*n;
+  for(var i=0;i<n;i++)PLAN[term].push({t:typeId,
+    name:label+(n>1?" "+(i+1):""),n:base+(i<left?1:0)});
+}
+
+/* The Departments table leads. Every ordinary section in the planner is derived
+   from it and carries a src key: the for-credit pulls first, then the 0-credit
+   sections holding whoever is left. They appear, resize and disappear as the
+   table changes, and are read-only below. The only rows this never touches are
+   the clinical cards and anything added by hand with "+ Add section". */
+function syncAll(){
+  var tot=deptTotal(), cap=Math.max(1,PARAMS.max);
+  var credit=roleType("t3",2);
+  var want={}; TERMS.forEach(function(t){want[t.id]=[];});
+
+  function spread(term,typeId,label,total,key,cr,il){
+    total=Math.round(total); if(total<=0)return;
+    /* only the generic CE-300 pool is cut to fit the section cap; every other
+       course runs as a single section in each term, however large */
+    var n=(key.indexOf("p|CE-300|")===0)?sectionCount(total,cap):1,
+        base=Math.floor(total/n), left=total-base*n;
+    for(var i=0;i<n;i++){
+      var k=key+"#"+i;
+      want[term].push({t:typeId, src:k, cr:cr, il:!!il, nil:0,
+        name:NOVR[k]||label, dname:label, n:base+(i<left?1:0)});
+    }
+  }
+
+  /* Students pulled into a department's own for-credit course. A course is one
+     section per term whichever departments feed it (EC-503 and ISOM-520 are each
+     fed by two lines of the grid), and its SM\u2192FL students ride in the same Fall
+     section as a summer supplement instead of getting a section of their own. */
+  var courses={}, corder=[];
+  function feed(code,cr,f1,fa,sp,i1,ia,is){
+    var key=String(code).trim().toUpperCase();
+    if(!courses[key]){ courses[key]={code:String(code).trim(),cr:cr,f1:0,fa:0,sp:0,n1:0,na:0,ns:0}; corder.push(key); }
+    var c=courses[key];
+    c.f1+=f1; c.fa+=fa; c.sp+=sp;
+    if(i1)c.n1+=f1; if(ia)c.na+=fa; if(is)c.ns+=sp;
+  }
+  DEPTS.forEach(function(d){
+    if(out(d))return;
+    var v=deptShare(d,tot), cr=deptCredits(d);
+    if(hasCourse(d)){
+      var m1=v.ownF1, ma=v.ownFa, ms=v.ownSp;
+      v.x.forEach(function(q){ m1-=q.f1; ma-=q.fa; ms-=q.sp; });
+      feed(d.k,cr,m1,ma,ms,d.lf1,d.lfa,d.lsp);
+    }
+    (d.x||[]).forEach(function(x,xi){
+      if(!hasCourse(x))return;
+      var q=v.x[xi];
+      feed(x.k,cr,q.f1,q.fa,q.sp,x.lf1,x.lfa,x.lsp);
+    });
+  });
+  corder.forEach(function(key){
+    var c=courses[key], kf="c|"+key+"|fa#0", ks="c|"+key+"|sp#0";
+    if(c.fa>0||c.f1>0)want.fall.push({t:credit.id,src:kf,cr:c.cr,name:NOVR[kf]||c.code,dname:c.code,
+      n:c.fa,nil:c.na,il:(c.fa>0&&c.na>=c.fa),sup:c.f1,supNil:c.n1});
+    if(c.sp>0)want.spring.push({t:credit.id,src:ks,cr:c.cr,name:NOVR[ks]||c.code,dname:c.code,
+      n:c.sp,nil:c.ns,il:(c.ns>=c.sp)});
+  });
+
+  /* everyone else, in the 0-credit section their department names */
+  var dnames={}; DEPTS.forEach(function(d){dnames[d.n]=1;});
+  [TOVR,NOVR].forEach(function(map){
+    Object.keys(map).forEach(function(k){
+      var q=k.split("|"); if(q[0]==="d")delete map[k]; }); });   /* keys from before courses merged by code */
+  var gl=deptGroups(), gnames={};
+  gl.forEach(function(g){
+    gnames[g.name]=1;
+    /* a course written into a department's 0-credit box is its own course, in the
+       Dept 0-credit type; everyone else is in the generic CE-300 */
+    var nmz=g.z||WBL_NAME, pt=(g.z?roleType("t5",0):roleType("t1",0)).id;
+    spread("summer",pt,nmz,g.summer,"p|"+g.name+"|summer",0);
+    spread("fall",pt,nmz,g.poolFa,"p|"+g.name+"|fall",0);
+    spread("spring",pt,nmz,g.poolSp,"p|"+g.name+"|spring",0);
+  });
+  /* Faculty-led research students are spread evenly over summer, fall and spring,
+     and SEED students over fall and spring, from the totals in the Departments
+     grid. Each is a single card per term, not cut into sections. */
+  var rtot=removalTotals();
+  function split2(total,parts){
+    var base=Math.floor(total/parts), left=total-base*parts, out=[];
+    for(var q=0;q<parts;q++)out.push(base+(q<left?1:0));
+    return out;
+  }
+  function lump(term,typeId,label,n){
+    if(n<=0)return;
+    var k="r|"+typeId+"|"+term+"#0";
+    /* SEED is a 3-credit course; its cost sits outside the model */
+    want[term].push({t:typeId,src:k,cr:(typeId==="tS"?3:0),il:false,name:NOVR[k]||label,dname:label,n:n});
+  }
+  var fr3=split2(rtot.fr,3), sd2=split2(rtot.sd,2);
+  lump("summer","tF","Faculty-led research",fr3[0]);
+  lump("fall","tF","Faculty-led research",fr3[1]);
+  lump("spring","tF","Faculty-led research",fr3[2]);
+  lump("fall","tS","SEED",sd2[0]);
+  lump("spring","tS","SEED",sd2[1]);
+
+  /* by-hand names and types saved against a pool that no longer exists would
+     land on whichever section now carries that key, so they are dropped */
+  [TOVR,NOVR].forEach(function(map){
+    Object.keys(map).forEach(function(k){
+      var q=k.split("|"); if(q[0]==="p"&&!gnames[q[1]])delete map[k]; }); });
+
+  TERMS.forEach(function(t){
+    var free=PLAN[t.id].filter(function(r){return !r.src;});
+    PLAN[t.id]=want[t.id].concat(free);
+  });
+
+  /* Rounding can leave a term a few seats short of its target. Make it up with
+     one extra student in each of the smallest generic CE-300 sections, never more
+     than one apiece, so the term lands on its target. Named courses never take it. A term already at or over its
+     target is left alone, as is Fall 1, which has none. */
+  var tgt=targets();
+  ["summer","fall","spring"].forEach(function(id){
+    var rows=PLAN[id], seats=0;
+    rows.forEach(function(r){ if(!r.info&&!(r.src&&r.src.indexOf("r|")===0))seats+=r.n; });
+    var gap=Math.round(tgt[id])-Math.round(seats);
+    if(gap<=0)return;
+    var pool=[];
+    rows.forEach(function(r,i){ if(r.src&&r.src.indexOf("p|CE-300|")===0&&r.n>0)pool.push({r:r,i:i}); });
+    pool.sort(function(a,b){ return (a.r.n-b.r.n)||(a.i-b.i); });
+    for(var j=0;j<pool.length&&gap>0;j++,gap--)pool[j].r.n+=1;
+  });
+  ensureClinicals();
+}
+
+function seedFromGroups(){
+  PLAN={summer:[],fall1:[],fall:[],spring:[]};
+  syncAll();
+}
+
+/* ============================================================
+   2. the numbers the sections are measured against
+   ============================================================ */
+function targets(){
+  var tot=deptTotal(), su=0, fa=0, sp=0;
+  DEPTS.forEach(function(d){
+    if(out(d))return;
+    var v=deptShare(d,tot); su+=v.summer; fa+=v.fall; sp+=v.spring; });
+  /* Fall 1 has no population of its own: it is a second registration for
+     summer students who want the credit, so it has no target */
+  return {summer:su, fall1:null, fall:fa, spring:sp};
+}
+function live(t){ return PLAN[t].filter(function(r){return !r.info;}); }
+function seated(t){ var n=0; live(t).forEach(function(r){n+=r.n;}); return n; }
+/* A Fall section carries its own students and, riding along, the students of the same
+   course who did the summer supplement (SM\u2192FL). `nil` and `supNil` count those in
+   load, which cost nothing new. */
+function fallCost(r){ return Math.max(0,r.n-(r.nil||0))*typeRate(typeAt(r.t)); }
+function supCost(r){ return Math.max(0,(r.sup||0)-(r.supNil||0))*PARAMS.payF1; }
+function sectionCost(r){ return fallCost(r)+supCost(r); }
+function supTotal(){ var t=0; live("fall").forEach(function(r){t+=(r.sup||0);}); return t; }
+function termCost(t){ var c=0; live(t).forEach(function(r){c+=sectionCost(r);}); return c; }
+function grandCost(){ var c=0; TERMS.forEach(function(t){c+=termCost(t.id);}); return c; }
+
+function seedPlan(){ seedFromGroups(); }
+
+/* ============================================================
+   3. chart
+   ============================================================ */
+var NS="http://www.w3.org/2000/svg";
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+function tx(x,y,t,cls,anchor){var e=el("text",{x:x,y:y,"class":cls});if(anchor)e.setAttribute("text-anchor",anchor);e.textContent=t;return e;}
+function n0(v){return Math.round(v).toLocaleString();}
+function money(v){return "$"+Math.round(v).toLocaleString();}
+function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function fmtInt(v){return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+
+/* what a chart cell says when you hover it, whether or not it had room to
+   print any of it */
+/* an instant tooltip that follows the pointer; the browser's own SVG title
+   waits a second or more and is easy to miss */
+var TIPEL=null;
+function tipBox(){
+  if(!TIPEL){
+    TIPEL=document.createElement("div"); TIPEL.className="chartip";
+    TIPEL.setAttribute("role","tooltip"); document.body.appendChild(TIPEL);
+  }
+  return TIPEL;
+}
+function moveTip(e){
+  var t=tipBox(), pad=14, w=t.offsetWidth, h=t.offsetHeight;
+  var x=e.clientX+pad, y=e.clientY+pad;
+  if(x+w>window.innerWidth-6)x=e.clientX-w-pad;
+  if(y+h>window.innerHeight-6)y=e.clientY-h-pad;
+  t.style.left=Math.max(6,x)+"px"; t.style.top=Math.max(6,y)+"px";
+}
+function bindTip(rc,r){
+  /* Only SEED cards and rolled-up cards carry a tooltip. CE-300 cards are a link
+     to the CE-300 modal. Every other card is plain. */
+  var tip=!!(r.small||r.t==="tS"), ce=(r.t==="t1");
+  if(!tip&&!ce)return;
+  if(ce){ rc.style.cursor="pointer"; rc.addEventListener("click",openCE); }
+  rc.addEventListener("mouseenter",function(e){
+    if(tip){
+      var t=tipBox();
+      t.innerHTML=r.small?smallTipHTML(r):seedTipHTML();
+      t.style.display="block"; moveTip(e);
+    }
+    rc.setAttribute("stroke","#15284B"); rc.setAttribute("stroke-width","1.5");
+  });
+  if(tip)rc.addEventListener("mousemove",moveTip);
+  rc.addEventListener("mouseleave",function(){
+    if(tip)tipBox().style.display="none";
+    rc.removeAttribute("stroke"); rc.removeAttribute("stroke-width");
+  });
+}
+/* the CE-300 modal, opened from the chart, the legend and the goals modal */
+function openCE(){ if(MODALS[1])MODALS[1].open(); }
+/* SEED cards say where the numbers come from; this is the per-semester enrollment
+   they were built from, kept as written rather than recomputed from the grid */
+var SEED_TIP_SOURCE="Default values are based on FL26 and projected SP27 enrollment across SEED Clinics";
+var SEED_TIP_LIST=[[1,"A&D: Interior Design"],[1,"Economics"],[1,"Global Humanities"],[1,"Math and CS"],
+  [1,"PSLS: Int Relations"],[1,"Strategy & Int'l Business"],[2,"Entrepreneurship"],[2,"PSLS: Law"],
+  [4,"ISOM"],[5,"Management Studies"],[6,"A&D: Graphic Design"],[6,"ADPR"],[8,"Accounting"],
+  [10,"Finance"],[12,"Marketing"]];
+function seedTipHTML(){
+  var h="<div>"+esc(SEED_TIP_SOURCE)+"</div><div>3 credits, no incremental cost</div><hr class='tiprule'>";
+  SEED_TIP_LIST.forEach(function(x){ h+="<div>"+x[0]+" - "+esc(x[1])+"</div>"; });
+  return h;
+}
+/* the rolled-up card: Fall students and supplement with their cost, a thin rule, then each section */
+function smallTipHTML(r){
+  var fc=0, sc2=0;
+  r.rows.forEach(function(q){ fc+=fallCost(q); sc2+=supCost(q); });
+  var term=termLabel(r.term||"fall");
+  var h="<div>"+n0(r.n)+" "+esc(term)+" student"+(r.n===1?"":"s")+", "+(fc?money(fc):"--")+"</div>";
+  if(r.sup>0)h+="<div>"+n0(r.sup)+" Summer supplement, "+(sc2?money(sc2):"--")+"</div>";
+  h+="<hr class='tiprule'>";
+  r.rows.forEach(function(q){
+    var t="";
+    if(q.n>0)t+=q.n;
+    if((q.sup||0)>0)t+=(t?", ":"")+q.sup+" supplemental";
+    h+="<div>"+esc(secLabel(q))+": "+t+(q.il?" (in load)":"")+"</div>"; });
+  return h;
+}
+function cellTip(r){
+  var rate=rowRate(r);
+  var out=(r.name||"section")+"\n"+n0(r.n)+" student"+(r.n===1?"":"s")+
+    ", "+rowCredits(r)+" credit"+(rowCredits(r)===1?"":"s")+"\n";
+  out+= r.il ? "carried in an existing teaching load, no new cost"
+    : (rate>0 ? money(rate)+" per student, "+money(fallCost(r))+" for the section"
+              : "No incremental cost");
+  if((r.sup||0)>0)out+="\n"+n0(r.sup)+" summer supplement, "+(supCost(r)?money(supCost(r)):"In-Load");
+  return out;
+}
+
+/* rough metrics for the 10px label face, enough to lay out block text */
+var CHW=5.15;
+function fitsIn(t,w){ return t.length*CHW<=w; }
+function clipTo(t,w){
+  var max=Math.floor(w/CHW);
+  return t.length<=max?t:t.slice(0,Math.max(1,max-1))+"…";
+}
+function wrapTo(t,w,maxLines){
+  var words=t.split(/\s+/), lines=[], cur="";
+  for(var i=0;i<words.length;i++){
+    var next=cur?cur+" "+words[i]:words[i];
+    if(!cur||fitsIn(next,w))cur=next;
+    else if(lines.length<maxLines-1){lines.push(cur);cur=words[i];}
+    else cur=next;
+  }
+  lines.push(cur);
+  lines[lines.length-1]=clipTo(lines[lines.length-1],w);
+  return lines;
+}
+
+var CV={w:1400,padL:22,padR:22,padT:46,padB:30,gap:2,
+  termGap:72,    /* open space between one term and the next */
+  stackGap:8,    /* space between the two summer stacks */
+  capT:42,capB:22,   /* how far the term dividers run past the plot */
+  plotMin:620,   /* the plot is never shorter than this, in chart units */
+  fiveH:13.5,    /* a five-student card is at least this tall, so its label always fits */
+  head:1.015,    /* headroom above the tallest stack, as a share of its height */
+  stacks:{summer:2,fall:1,spring:1}};
+
+/* the colour a type's card text is printed in; white unless a picker says otherwise */
+function typeText(id){ var ty=typeAt(id); return (ty&&ty.textColor)||"#FFFFFF"; }
+/* paint a card's text: the chosen colour, a touch softer on the lighter lines */
+function tcol(e,c,soft){ e.style.fill=c; if(soft)e.style.fillOpacity=.92; return e; }
+
+/* A section's name as the chart prints it */
+function secLabel(r){
+  var rt=typeAt(r.t), own=(r.name||"").trim();
+  /* CE cards always lead with "CE-300", whatever the legend calls the type */
+  return (r.t===roleType("t1",0).id)?"CE-300"+(own?": "+own:""):(own||rt.name);
+}
+/* A term's cards, bottom to top. Sections with fewer than T students are too
+   short to carry a label, so they are rolled up, one card per type, each as tall
+   as the students it holds but never under T so its own label fits. */
+function chartRows(termId,T){
+  /* a card is as tall as its Fall students plus any summer supplement it carries */
+  function hgt(r){ return r.n+(r.sup||0); }
+  var rows=live(termId).filter(function(r){return hgt(r)>0;});
+  var big=chartOrder(rows.filter(function(r){return hgt(r)>=T;}));
+  var by={};
+  rows.filter(function(r){return hgt(r)<T;}).forEach(function(r){ (by[r.t]=by[r.t]||[]).push(r); });
+  /* each type's rolled-up card sits on top of that type's other cards, so a type
+     stays one unbroken band of colour up the stack */
+  var out=[];
+  TYPES.forEach(function(ty){
+    big.forEach(function(r){ if(typeAt(r.t)===ty)out.push(r); });
+    var list=by[ty.id];
+    if(list&&list.length===1){
+      /* a lone small section is not rolled up: it shows as itself, drawn tall enough for its label */
+      var one=Object.assign({},list[0]); one.vn=Math.max(hgt(one),T); out.push(one);
+    }else if(list&&list.length){
+      var tot=0, fs=0, ss=0; list.forEach(function(r){tot+=hgt(r); fs+=r.n; ss+=(r.sup||0);});
+      out.push({small:true,thr:T,term:termId,rows:list,n:fs,sup:ss,vn:Math.max(tot,T),t:ty.id});
+    }
+  });
+  return out;
+}
+var NUMWORD=["zero","one","two","three","four","five","six","seven","eight","nine","ten"];
+function vn(r){ return r.vn||(r.n+(r.sup||0)); }
+function visTotal(rows){ var t=0; rows.forEach(function(r){t+=vn(r);}); return t; }
+
+function render(){
+  if(typeof buildLegend==="function")buildLegend();   /* names and colours may have just changed */
+  var svg=document.getElementById("chart");
+  while(svg.firstChild)svg.removeChild(svg.firstChild);
+  if(TIPEL)TIPEL.style.display="none";   /* the bar under the pointer is about to be replaced */
+  var back=el("g",{}), bars=el("g",{}),
+      lab=el("g",{"pointer-events":"none"});   /* so hovers reach the bars beneath */
+  [back,bars,lab].forEach(function(g){svg.appendChild(g);});
+
+  var plotW=CV.w-CV.padL-CV.padR;
+
+  /* Fall 1 has no column of its own: its cards ride on top of the Fall stack at
+     a narrower width. Summer carries most of the year, so it runs as two stacks. */
+  var active=TERMS.filter(function(t){return t.id!=="fall1";});
+  /* Summer runs as two stacks only when it is both much bigger than the other terms
+     and made of enough cards to split; otherwise one stack, and the three terms
+     share the width equally. */
+  var sumN=seated("summer"), othN=Math.max(seated("fall"),seated("spring")), sumCards=live("summer").length;
+  var stacksOf={summer:(sumCards>=8&&sumN>1.5*othN)?2:1,fall:1,spring:1};
+  var units=0; active.forEach(function(t){units+=(stacksOf[t.id]||1);});
+  var tgap=CV.termGap, igap=CV.stackGap, pad=tgap/2;
+  var colW=(plotW-active.length*tgap-(units-active.length)*igap)/units;
+  var slotX={}, slotW={}, cx=CV.padL+pad;
+  active.forEach(function(t){
+    var k=stacksOf[t.id]||1;
+    slotW[t.id]=k*colW+(k-1)*igap; slotX[t.id]=cx; cx+=slotW[t.id]+tgap;
+  });
+
+  /* The tallest stack sets the scale, and the plot grows until a five-student
+     card is tall enough for its label. Then the roll-up threshold is the
+     smallest card that still fits a label at that scale: the taller the chart,
+     the fewer sections get rolled up. */
+  function layout(T){
+    var ro={}; active.forEach(function(t){ ro[t.id]=chartRows(t.id,T); });
+    var mv=0;
+    active.forEach(function(t){
+      /* the tallest stack as it will really be cut, not an even share of the term */
+      split(ro[t.id],stacksOf[t.id]||1).forEach(function(st){ mv=Math.max(mv,visTotal(st)); });
+    });
+    if(mv<=0)mv=1;
+    var ph=Math.max(CV.plotMin,Math.ceil(CV.fiveH/5*mv*CV.head));
+    return {rows:ro,plotH:ph,sc:ph/(mv*CV.head)};   /* a little headroom above the tallest stack */
+  }
+  function needT(sc){ return Math.max(1,Math.ceil((11+CV.gap)/sc-1e-9)); }
+  var thr=5, L=layout(5);
+  while(thr>1){
+    var L2=layout(thr-1);
+    if(needT(L2.sc)<=thr-1){ thr--; L=L2; } else break;
+  }
+  var rowsOf=L.rows, plotH=L.plotH, sc=L.sc;
+  var y0=CV.padT+plotH, H=y0+CV.padB;
+  svg.setAttribute("viewBox","0 0 "+CV.w+" "+H);
+
+  /* split a term's cards into k stacks of roughly equal height */
+  function split(rows,k){
+    if(k<2)return [rows];
+    var tot=visTotal(rows);
+    var out=[],cur=[],run=0,made=1;
+    rows.forEach(function(r){
+      if(made<k && run>0 && run+vn(r)/2>tot*made/k){out.push(cur);cur=[];made++;}
+      cur.push(r); run+=vn(r);
+    });
+    out.push(cur);
+    while(out.length<k)out.push([]);
+    return out;
+  }
+
+  /* one rule per term, drawn under its stacks, so the two summer stacks read
+     as one term. The dividers between terms match the bar over the term names. */
+  active.forEach(function(t,i){
+    var x0=slotX[t.id], last=(i===active.length-1);
+    back.appendChild(el("line",{x1:x0-pad+4,y1:y0+1,x2:x0+slotW[t.id]+pad-4,y2:y0+1,
+      stroke:"#15284B","stroke-width":1.25}));
+    if(!last){
+      var dx=x0+slotW[t.id]+pad;
+      back.appendChild(el("line",{
+        x1:dx,y1:CV.padT-CV.capT,x2:dx,y2:y0+CV.capB,
+        stroke:"#15284B","stroke-width":3}));
+    }
+  });
+
+  /* one card. A Fall card with a summer supplement carries two lines: the Fall
+     students, name and cost, then the supplement's students and cost. */
+  function block(r,x,w,cum){
+    var hh=Math.max(0,vn(r)*sc-CV.gap), yy=y0-(cum+vn(r))*sc;
+    if(hh>0.4){
+      var rc=el("rect",{x:x,y:yy,width:w,height:hh,fill:typeColor(r.t)});
+      bindTip(rc,r);
+      bars.appendChild(rc);
+    }
+    if(hh<11)return;
+    var cy=yy+hh/2, tc=typeText(r.t);
+    if(r.small){
+      var nx0=x+34, cw0=w-34-9;
+      var full="in sections with less than "+NUMWORD[r.thr]+" students";
+      var txt=fitsIn(full,cw0)?full:("in sections <"+r.thr);
+      lab.appendChild(tcol(tx(x+9,cy+3.5,n0(r.n+(r.sup||0)),"blocknum"),tc));
+      lab.appendChild(tcol(tx(nx0,cy+3.5,clipTo(txt,cw0),"blockname it"),tc,true));
+      return;
+    }
+    var sup=r.sup||0, two=(sup>0&&hh>=24);
+    var fallTxt=r.il?"In-Load":(r.t==="tS"?"No incremental cost":(r.n===0?"--":money(fallCost(r))));
+    var supTxt=(supCost(r)===0)?"In-Load":money(supCost(r));
+    var nm=secLabel(r);
+    function line(y,count,label,costTxt){
+      lab.appendChild(tcol(tx(x+9,y,n0(count),"blocknum"),tc));
+      lab.appendChild(tcol(tx(x+w-9,y,costTxt,"blockcost","end"),tc,true));
+      var cw=w-34-Math.max(50,Math.ceil(costTxt.length*5.4)+12);
+      if(label)lab.appendChild(tcol(tx(x+34,y,clipTo(label,cw),"blockname"),tc,true));
+      return cw;
+    }
+    if(two){
+      line(cy-2,r.n,nm,fallTxt);
+      line(cy+10.5,sup,"Summer supplement",supTxt);
+    }else if(sup>0&&r.n===0){
+      line(cy+3.5,sup,nm+" \u00b7 supplement",supTxt);
+    }else{
+      var cw=w-34-Math.max(50,Math.ceil(fallTxt.length*5.4)+12);
+      lab.appendChild(tcol(tx(x+9,cy+3.5,n0(r.n),"blocknum"),tc));
+      lab.appendChild(tcol(tx(x+w-9,cy+3.5,fallTxt,"blockcost","end"),tc,true));
+      if(nm){
+        var ls=(hh>=24)?wrapTo(nm,cw,2):[clipTo(nm,cw)];
+        if(ls.length<2){
+          lab.appendChild(tcol(tx(x+34,cy+3.5,ls[0],"blockname"),tc,true));
+        }else{
+          lab.appendChild(tcol(tx(x+34,cy-1.5,ls[0],"blockname"),tc,true));
+          lab.appendChild(tcol(tx(x+34,cy+9.5,ls[1],"blockname"),tc,true));
+        }
+      }
+    }
+  }
+
+  active.forEach(function(t){
+    var k=stacksOf[t.id]||1, rows=rowsOf[t.id], x0=slotX[t.id];
+    split(rows,k).forEach(function(st,si){
+      var x=x0+si*(colW+igap), cum=0;
+      st.forEach(function(r){ block(r,x,colW,cum); cum+=vn(r); });
+    });
+
+    /* the head of each term: its name and its students */
+    var midX=x0+slotW[t.id]/2, n=seated(t.id);
+    lab.appendChild(tx(midX,14,t.label,"termlab","middle"));
+    lab.appendChild(tx(midX,29,n0(n)+" student"+(n===1?"":"s"),"termsub","middle"));
+  });
+}
+
+/* ============================================================
+   4. top controls
+   ============================================================ */
+function tfield(id,label,pct){
+  return "<div class='tf'><label for='"+id+"'>"+label+"</label>"+
+    "<div class='box"+(pct?" pct":"")+"'><input type='text' inputmode='numeric' id='"+id+
+    "' data-k='"+id+"'>"+(pct?"<span class='post'>%</span>":"")+"</div></div>";
+}
+/* a pay rate: bold name, a $ and the number, then a quiet "per student" */
+function tpay(id,label){
+  return "<div class='tf pay'><label for='"+id+"'>"+label+"</label>"+
+    "<div class='box'><span class='pre'>$</span><input type='text' inputmode='numeric' id='"+id+
+    "' data-k='"+id+"'></div><span class='per'>per student</span></div>";
+}
+
+/* ---- department / program picker: a multi-select dropdown --------------- */
+function pickLabel(){
+  if(PICK.all)return "All students";
+  var names=Object.keys(PICK.schools).concat(Object.keys(PICK.depts));
+  return names.length<=2?names.join(", "):names.length+" selected";
+}
+function applyPick(){
+  var any=Object.keys(PICK.schools).length||Object.keys(PICK.depts).length;
+  if(!any)PICK.all=true;
+  if(PICK.all){ SEL=null; }
+  else{
+    SEL={};
+    DEPTS.forEach(function(d){ if(!d.o&&(PICK.schools[d.s]||PICK.depts[d.n]))SEL[d.n]=true; });
+  }
+  document.getElementById("deptsec").hidden=(SEL===null);
+  syncAll(); buildDepts(); buildPlanRows(); go();
+  var b=document.getElementById("msbtn"); if(b)b.textContent=pickLabel();
+}
+function buildDeptPick(){
+  var box=document.getElementById("msel"); if(!box)return;
+  var names=DEPTS.filter(function(d){return !d.o;}).map(function(d){return d.n;}).sort(function(a,b){return a.localeCompare(b);});
+  function item(kind,key,text,on){
+    return "<label class='msitem'><input type='checkbox' data-kind='"+kind+"' data-key='"+esc(key)+"'"+(on?" checked":"")+"> "+esc(text)+"</label>";
+  }
+  box.innerHTML="<button type='button' class='msbtn' id='msbtn' aria-haspopup='listbox' aria-expanded='false' aria-labelledby='deptpicklab msbtn'>"+esc(pickLabel())+"</button>"+
+    "<div class='mspanel' id='mspanel' hidden>"+
+    item("all","","All students",PICK.all)+
+    "<div class='msgrp'>Schools</div>"+
+    item("school","CAS","CAS",!!PICK.schools.CAS)+item("school","SBS","SBS",!!PICK.schools.SBS)+
+    "<div class='msgrp'>Departments and programs</div>"+
+    names.map(function(n){ return item("dept",n,n,!!PICK.depts[n]); }).join("")+"</div>";
+  var btn=document.getElementById("msbtn"), panel=document.getElementById("mspanel");
+  function close(){ panel.hidden=true; btn.setAttribute("aria-expanded","false"); }
+  btn.addEventListener("click",function(){
+    panel.hidden=!panel.hidden; btn.setAttribute("aria-expanded",panel.hidden?"false":"true"); });
+  panel.addEventListener("change",function(e){
+    var c=e.target, k=c.dataset.kind, key=c.dataset.key;
+    if(k==="all"){ PICK={all:true,schools:{},depts:{}}; }
+    else{
+      PICK.all=false;
+      var m=(k==="school")?PICK.schools:PICK.depts;
+      if(c.checked)m[key]=true; else delete m[key];
+    }
+    applyPick();
+    /* keep the checkboxes in step with the state (All students un-ticks the rest) */
+    panel.querySelectorAll("input").forEach(function(i){
+      var kk=i.dataset.kind, v=i.dataset.key;
+      i.checked=(kk==="all")?PICK.all:(kk==="school"?!!PICK.schools[v]:!!PICK.depts[v]); });
+  });
+  document.addEventListener("mousedown",function(e){ if(!panel.hidden&&!box.contains(e.target))close(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!panel.hidden){ close(); btn.focus(); } });
+}
+function buildTop(){
+  document.getElementById("top").innerHTML=
+    "<div class='vartitle'>Adjustable variables</div>"+
+    tfield("students","Students completing<br>WBL per year <span class='infoi' id='studinfo' tabindex='0' role='img' aria-label='Why this equals one class year'>i</span>")+
+    tfield("summerPct","% completing WBL<br>during the summer",true)+
+    "<div class='tgap'></div>"+
+    tpay("frRate","Faculty-led research")+
+    tpay("pay0","0-credit")+
+    tpay("payCr","For-credit, not in load")+
+    tpay("payF1","Summer supplement")+
+    "<div class='tf'><label id='deptpicklab'>Department / program</label><div class='msel' id='msel'></div></div>";
+  buildDeptPick();
+  var ii=document.getElementById("studinfo");
+  if(ii){
+    var STUD_TIP="Because every student is required to complete this once, the annual population of WBL participants is the same as one class year in both size and departmental makeup. Spreading participation across the sophomore and junior years changes who is doing it in a given term, not how many students are doing it in a given year.";
+    function showStud(e){
+      var t=tipBox(); t.textContent=STUD_TIP; t.style.display="block";
+      if(e.type==="focus"){ var r=ii.getBoundingClientRect(); moveTip({clientX:r.right,clientY:r.bottom}); }
+      else moveTip(e);
+    }
+    ii.addEventListener("mouseenter",showStud); ii.addEventListener("focus",showStud);
+    ii.addEventListener("mousemove",moveTip);
+    function hideStud(){ tipBox().style.display="none"; }
+    ii.addEventListener("mouseleave",hideStud); ii.addEventListener("blur",hideStud);
+  }
+  document.querySelectorAll("#top input[data-k]").forEach(function(e){
+    e.addEventListener("input",function(){
+      var k=this.dataset.k, pct=(k==="summerPct");
+      var before=this.value.slice(0,this.selectionStart||0).replace(/\D/g,"").length;
+      var d=this.value.replace(/\D/g,""), v=d===""?0:parseInt(d,10);
+      if(pct)v=Math.min(100,v);
+      PARAMS[k]=v;
+      this.value=pct?String(v):fmtInt(v);
+      var pos=0,seen=0;
+      while(pos<this.value.length&&seen<before){ if(/\d/.test(this.value.charAt(pos)))seen++; pos++; }
+      try{this.setSelectionRange(pos,pos);}catch(x){}
+      syncAll(); savePlan(); buildPlanRows(); go();
+    });
+  });
+}
+function writeTop(){
+  ["students","frRate","pay0","payF1","payCr"].forEach(function(k){
+    document.getElementById(k).value=fmtInt(PARAMS[k]);});
+  document.getElementById("summerPct").value=String(PARAMS.summerPct);
+}
+
+/* ============================================================
+   5. course types
+   ============================================================ */
+/* A small colour picker: a square for shade, a bar for hue, and a hex box. It
+   replaces the browser's own picker so there are no RGB / HSL readouts. */
+var CP=null;
+function hexToRgb(h){
+  h=String(h||"").trim().replace(/^#/,"");
+  if(/^[0-9a-f]{3}$/i.test(h))h=h.replace(/(.)/g,"$1$1");
+  if(!/^[0-9a-f]{6}$/i.test(h))return null;
+  return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];
+}
+function rgbToHex(r,g,b){
+  return "#"+[r,g,b].map(function(v){return ("0"+Math.round(v).toString(16)).slice(-2);}).join("").toUpperCase();
+}
+function rgbToHsv(r,g,b){
+  r/=255;g/=255;b/=255;
+  var mx=Math.max(r,g,b), mn=Math.min(r,g,b), d=mx-mn, h=0;
+  if(d){
+    if(mx===r)h=((g-b)/d)%6; else if(mx===g)h=(b-r)/d+2; else h=(r-g)/d+4;
+    h*=60; if(h<0)h+=360;
+  }
+  return [h,mx?d/mx:0,mx];
+}
+function hsvToRgb(h,s,v){
+  var c=v*s, x=c*(1-Math.abs((h/60)%2-1)), m=v-c, r=0,g=0,b=0;
+  if(h<60){r=c;g=x;} else if(h<120){r=x;g=c;} else if(h<180){g=c;b=x;}
+  else if(h<240){g=x;b=c;} else if(h<300){r=x;b=c;} else {r=c;b=x;}
+  return [(r+m)*255,(g+m)*255,(b+m)*255];
+}
+function closePicker(){ if(CP){CP.el.remove(); document.removeEventListener("pointerdown",CP.out,true); document.removeEventListener("keydown",CP.key,true); CP=null;} }
+function openPicker(anchor,startHex,onChange){
+  closePicker();
+  var rgb=hexToRgb(startHex)||[255,255,255], hsv=rgbToHsv(rgb[0],rgb[1],rgb[2]);
+  var W=180,H=120;
+  var el=document.createElement("div"); el.className="cpick";
+  el.innerHTML="<canvas class='cpsv' width='"+W+"' height='"+H+"'></canvas>"+
+    "<canvas class='cphue' width='"+W+"' height='12'></canvas>"+
+    "<div class='cprow'><span>#</span><input class='cphex' maxlength='7' spellcheck='false' aria-label='Hex colour'></div>";
+  document.body.appendChild(el);
+  var sv=el.querySelector(".cpsv"), hue=el.querySelector(".cphue"), hex=el.querySelector(".cphex");
+  var sx=sv.getContext("2d"), hx=hue.getContext("2d");
+  function cur(){ var c=hsvToRgb(hsv[0],hsv[1],hsv[2]); return rgbToHex(c[0],c[1],c[2]); }
+  function draw(){
+    var base=hsvToRgb(hsv[0],1,1);
+    sx.clearRect(0,0,W,H);
+    var g1=sx.createLinearGradient(0,0,W,0); g1.addColorStop(0,"#fff"); g1.addColorStop(1,rgbToHex(base[0],base[1],base[2]));
+    sx.fillStyle=g1; sx.fillRect(0,0,W,H);
+    var g2=sx.createLinearGradient(0,0,0,H); g2.addColorStop(0,"rgba(0,0,0,0)"); g2.addColorStop(1,"#000");
+    sx.fillStyle=g2; sx.fillRect(0,0,W,H);
+    var px=hsv[1]*W, py=(1-hsv[2])*H;
+    sx.lineWidth=2; sx.strokeStyle="#fff"; sx.beginPath(); sx.arc(px,py,5,0,6.2832); sx.stroke();
+    sx.lineWidth=1; sx.strokeStyle="#000"; sx.beginPath(); sx.arc(px,py,6.5,0,6.2832); sx.stroke();
+    var g3=hx.createLinearGradient(0,0,W,0);
+    for(var k=0;k<=6;k++){ var c=hsvToRgb(k*60,1,1); g3.addColorStop(k/6,rgbToHex(c[0],c[1],c[2])); }
+    hx.fillStyle=g3; hx.fillRect(0,0,W,12);
+    var hxp=hsv[0]/360*W; hx.fillStyle="#fff"; hx.fillRect(hxp-2,0,4,12);
+    hx.strokeStyle="#000"; hx.lineWidth=1; hx.strokeRect(hxp-2.5,0.5,5,11);
+  }
+  function emit(fromHex){
+    var h=cur(); if(!fromHex)hex.value=h.slice(1);
+    onChange(h);
+  }
+  function drag(cv,fn){
+    cv.addEventListener("pointerdown",function(e){
+      cv.setPointerCapture(e.pointerId); fn(e);
+      function mv(ev){ fn(ev); }
+      function up(){ cv.removeEventListener("pointermove",mv); cv.removeEventListener("pointerup",up); }
+      cv.addEventListener("pointermove",mv); cv.addEventListener("pointerup",up);
+    });
+  }
+  drag(sv,function(e){
+    var b=sv.getBoundingClientRect();
+    hsv[1]=Math.min(1,Math.max(0,(e.clientX-b.left)/b.width));
+    hsv[2]=1-Math.min(1,Math.max(0,(e.clientY-b.top)/b.height));
+    draw(); emit();
+  });
+  drag(hue,function(e){
+    var b=hue.getBoundingClientRect();
+    hsv[0]=Math.min(359.999,Math.max(0,(e.clientX-b.left)/b.width*360));
+    draw(); emit();
+  });
+  hex.value=cur().slice(1);
+  hex.addEventListener("input",function(){
+    var c=hexToRgb(this.value);
+    if(!c)return;
+    hsv=rgbToHsv(c[0],c[1],c[2]); draw(); emit(true);
+  });
+  hex.addEventListener("blur",function(){ hex.value=cur().slice(1); });
+  draw();
+  /* below the swatch, kept on screen */
+  var a=anchor.getBoundingClientRect(), w=el.offsetWidth, h=el.offsetHeight;
+  var x=a.left+window.pageXOffset, y=a.bottom+window.pageYOffset+6;
+  if(a.left+w>window.innerWidth-8)x=window.innerWidth-8-w+window.pageXOffset;
+  if(a.bottom+6+h>window.innerHeight-8)y=a.top+window.pageYOffset-h-6;
+  el.style.left=Math.max(4,x)+"px"; el.style.top=Math.max(4,y)+"px";
+  CP={el:el,
+    out:function(e){ if(!el.contains(e.target)&&e.target!==anchor)closePicker(); },
+    key:function(e){ if(e.key==="Escape")closePicker(); }};
+  document.addEventListener("pointerdown",CP.out,true);
+  document.addEventListener("keydown",CP.key,true);
+  hex.focus(); hex.select();
+}
+function buildTypes(){
+  var tb=document.getElementById("typebody"); if(!tb)return;   /* the editable table is not on this page */
+  tb.innerHTML=TYPES.map(function(ty,i){
+    return "<tr data-t='"+ty.id+"'>"+
+      "<td class='dragcell'><span class='draghandle' title='Drag to reorder' aria-label='Drag to reorder'>\u2807</span></td>"+
+      "<td></td><td class='tcell2'></td>"+
+      "<td><input class='tname' value='"+esc(ty.name)+"'></td>"+
+      "<td><input class='tdesc' value='"+esc(ty.desc||"")+"' placeholder='Description, for tooltips later'></td>"+
+      "<td class='tinfo tcrd'></td><td class='tinfo tcst'></td></tr>";
+  }).join("");
+  /* the code is fixed text beside the colour swatch */
+  TYPES.forEach(function(ty,i){
+    var tr=tb.querySelector("tr[data-t='"+ty.id+"']");
+    var c=tr.children[1];
+    var sw=document.createElement("span");
+    sw.className="swb"; sw.tabIndex=0; sw.style.background=colorOf(i);
+    sw.title="Pick a colour for "+ty.code;
+    sw.setAttribute("aria-label","Colour for "+ty.code);
+    c.appendChild(sw);
+    var ci=document.createElement("span");
+    ci.className="tcodefix"; ci.textContent=ty.code;
+    ci.style.cssText="width:40px;margin-left:7px;text-align:center;font:600 .875rem var(--sans);color:"+colorOf(i);
+    c.appendChild(ci);
+    c.style.whiteSpace="nowrap"; c.style.display="flex"; c.style.alignItems="center";
+
+    /* text colour for the cards of this type */
+    var tp=document.createElement("span");
+    tp.className="swb"; tp.tabIndex=0; tp.style.background=(ty.textColor||"#FFFFFF");
+    tp.title="Text colour on "+ty.code+" cards";
+    tp.setAttribute("aria-label","Text colour for "+ty.code);
+    tr.children[2].appendChild(tp);
+    tp.addEventListener("click",function(){
+      openPicker(tp,ty.textColor||"#FFFFFF",function(hex){
+        ty.textColor=hex; tp.style.background=hex; savePlan(); render(); }); });
+
+    wireDrag(tr);
+    sw.addEventListener("click",function(){
+      openPicker(sw,colorOf(typeIndex(ty.id)),function(hex){
+        ty.color=hex; sw.style.background=hex; ci.style.color=hex;
+        savePlan(); buildPlanRows(); planTotals(); render(); }); });
+    tr.querySelector(".tname").addEventListener("input",function(){ty.name=this.value;savePlan();render();});
+    tr.querySelector(".tdesc").addEventListener("input",function(){ty.desc=this.value;savePlan();});
+  });
+  refreshTypeInfo();
+}
+/* credits and cost per student are read off the other controls, not typed in: the
+   cost from the pay rates at the top, the credits from the departments' courses */
+function typeCreditsText(ty){
+  var k=typeKind(ty);
+  if(k==="seed")return "3";
+  if(k!=="credit"&&k!=="fall1")return "0";
+  var lo=99,hi=0;
+  DEPTS.forEach(function(d){
+    if(d.o)return;
+    var has=hasCourse(d)||(d.x||[]).some(hasCourse);
+    if(!has)return;
+    var c=deptCredits(d); lo=Math.min(lo,c); hi=Math.max(hi,c); });
+  if(hi===0)return String(typeCredits(ty));
+  return lo===hi?String(lo):lo+"\u2013"+hi;
+}
+function typeCostText(ty){
+  if(typeKind(ty)==="seed")return "No incremental cost";
+  return money(typeRate(ty))+" / student";
+}
+/* read-only legend of the types, as a reader of the finished model would see it */
+function buildLegend(){
+  var box=document.getElementById("legendbox"); if(!box)return;
+  /* three columns: the department types, SEED and faculty-led research, then CE-300 */
+  var COLS=[["t1","tF","tS","t3","t5"]];   /* one row; the SM→FL type has no legend entry */
+  box.innerHTML=COLS.map(function(ids){
+    return "<div class='lgcol'>"+ids.map(function(id){
+      var i=typeIndex(id), ty=TYPES[i]; if(!ty||ty.id!==id)return "";
+      var fill=colorOf(i), txt=ty.textColor||"#FFFFFF";
+      var ce=(id==="t1");
+      return "<div class='lgitem"+(ce?" lglink' role='button' tabindex='0' title='About CE-300":"")+"'><span class='lgsq' style='background:"+esc(fill)+"'><i style='background:"+esc(txt)+"'></i></span>"+
+        "<span class='lgtx'><span class='lgname'>"+esc(ty.name)+"</span>"+
+        "<span class='lgmeta'>"+esc(typeCreditsText(ty))+" cr. · "+esc(typeCostText(ty))+"</span></span></div>";
+    }).join("")+"</div>";
+  }).join("");
+}
+function refreshTypeInfo(){
+  buildLegend();
+  TYPES.forEach(function(ty){
+    var tr=document.querySelector("#typebody tr[data-t='"+ty.id+"']"); if(!tr)return;
+    var a=tr.querySelector(".tcrd"), b=tr.querySelector(".tcst");
+    if(a)a.textContent=typeCreditsText(ty);
+    if(b)b.textContent=typeCostText(ty);
+  });
+}
+/* Drag a row by its handle to reorder the types. The order drives the
+   section sort, so the builder and chart follow at once. Colours are pinned
+   first, because an unset colour comes from the row's position. */
+var DRAGID=null;
+function wireDrag(tr){
+  var h=tr.querySelector(".draghandle");
+  h.addEventListener("mousedown",function(){ tr.draggable=true; });
+  tr.addEventListener("dragstart",function(e){
+    DRAGID=tr.dataset.t; tr.classList.add("dragging");
+    try{e.dataTransfer.effectAllowed="move"; e.dataTransfer.setData("text/plain",DRAGID);}catch(x){}
+  });
+  tr.addEventListener("dragend",function(){
+    tr.draggable=false; DRAGID=null;
+    document.querySelectorAll("#typebody tr").forEach(function(r){
+      r.classList.remove("dragging","dropbefore","dropafter");});
+  });
+  tr.addEventListener("dragover",function(e){
+    if(!DRAGID||DRAGID===tr.dataset.t)return;
+    e.preventDefault();
+    var b=tr.getBoundingClientRect(), after=e.clientY>b.top+b.height/2;
+    tr.classList.toggle("dropafter",after); tr.classList.toggle("dropbefore",!after);
+  });
+  tr.addEventListener("dragleave",function(){ tr.classList.remove("dropbefore","dropafter"); });
+  tr.addEventListener("drop",function(e){
+    e.preventDefault();
+    var from=DRAGID, to=tr.dataset.t, after=tr.classList.contains("dropafter");
+    if(!from||from===to)return;
+    TYPES.forEach(function(t,i){ if(!t.color)t.color=colorOf(i); });
+    var mv=TYPES.splice(typeIndex(from),1)[0];
+    var at=typeIndex(to)+(after?1:0);
+    TYPES.splice(at,0,mv);
+    savePlan(); buildTypes(); buildPlanRows(); planTotals(); render();
+  });
+}
+
+/* ============================================================
+   6. sections
+   ============================================================ */
+var PLAN_KEY="wbl-section-builder-v5";
+var DB=null, CAN_EDIT=false, TOUCHED=false;
+function savePlan(){ TOUCHED=true;
+  try{localStorage.setItem(PLAN_KEY,
+    JSON.stringify({p:PARAMS,t:TYPES,s:PLAN,q:typeSeq,d:DEPTS,v:TOVR,w:NOVR,wv:WV,pv:PV,tv:TV,ev:EV}));}catch(e){} }
+function validPlan(o){
+  if(!o||!o.s||!o.t||!o.p)return null;
+  var ok=true; TERMS.forEach(function(t){if(!Array.isArray(o.s[t.id]))ok=false;});
+  return ok?o:null;
+}
+function loadPlan(){
+  try{
+    var raw=localStorage.getItem(PLAN_KEY); if(!raw)return null;
+    return validPlan(JSON.parse(raw));
+  }catch(e){ return null; }
+}
+/* the same shape savePlan writes, so an exported file and a saved copy are interchangeable */
+function snapshot(){ return {p:PARAMS,t:TYPES,s:PLAN,q:typeSeq,d:DEPTS,v:TOVR,w:NOVR,wv:WV,pv:PV,tv:TV,ev:EV}; }
+function applyState(o){
+  adopt(o); syncAll(); buildTop(); buildTypes(); buildDepts(); buildPlanRows(); go();
+}
+/* plan.json beside index.html is the shared default; fails quietly when the
+   page is opened from disk, where browsers block fetch */
+function fetchRepoPlan(){
+  return fetch("plan.json",{cache:"no-store"}).then(function(r){
+    if(!r.ok)throw new Error(r.status); return r.json(); }).then(validPlan);
+}
+/* A saved copy may predate fields added since it was written, so every
+   department is merged onto its current default rather than replacing it. */
+function adopt(o){ adopt0(o); migratePulls(); }
+/* plans saved before pulls were counts-only may hold "40%": resolve those to
+   a headcount now ("all" at 100%), so nothing is silently dropped */
+function migratePulls(){
+  var tot=deptTotal();
+  DEPTS.forEach(function(d){
+    if(!hasCourse(d))return;
+    var v=deptShare(d,tot);
+    [["f1","summer"],["fa","fall"],["sp","spring"]].forEach(function(z){
+      var t=String(d[z[0]]||"").trim(), m=/^(\d+(?:\.\d+)?)\s*%$/.exec(t);
+      if(!m)return;
+      var pc=parseFloat(m[1]);
+      d[z[0]]=pc>=100?"all":(pc>0?String(Math.round(v[z[1]]*pc/100)):"");
+    });
+  });
+}
+function adopt0(o){
+  PARAMS=o.p; if(typeof PARAMS.frRate!=="number"||PARAMS.frRate<0)PARAMS.frRate=DEF.p.frRate;
+  TYPES=o.t; PLAN=o.s; typeSeq=o.q||(TYPES.length+1);
+  /* SM\u2192FL no longer has sections of its own: any hand-added ones join Fall */
+  if(PLAN.fall1){ PLAN.fall=(PLAN.fall||[]).concat(PLAN.fall1.filter(function(r){return !r.src&&!r.info;})); PLAN.fall1=[]; }
+  /* plans from before types had a kind: read it from the old pay and credits, and
+     take the two rates from the types that used to carry them */
+  function oldPay(id,fb){
+    for(var i=0;i<TYPES.length;i++)if(TYPES[i].id===id&&typeof TYPES[i].pay==="number")return TYPES[i].pay;
+    return fb; }
+  if(typeof PARAMS.floor!=="number"||PARAMS.floor<0)PARAMS.floor=DEF.p.floor;
+  if(typeof PARAMS.min!=="number"||PARAMS.min<0)PARAMS.min=DEF.p.min;
+  /* a plan from before Fall-1 had its own rate: that type becomes Fall-1 and keeps its old pay */
+  if(typeof PARAMS.payF1!=="number"||PARAMS.payF1<0){
+    PARAMS.payF1=oldPay("t2",DEF.p.payF1);
+    TYPES.forEach(function(ty){ if(ty.id==="t2"&&ty.kind==="credit")ty.kind="fall1"; });
+  }
+  ["pay0","payCr"].forEach(function(k){
+    if(typeof PARAMS[k]!=="number"||PARAMS[k]<0)
+      PARAMS[k]=(k==="pay0")?oldPay("t1",DEF.p.pay0):oldPay("t3",DEF.p.payCr); });
+  TYPES.forEach(function(ty){
+    if(ty.kind==="zero"||ty.kind==="credit"||ty.kind==="fall1"||ty.kind==="inload")return;
+    ty.kind=(typeof ty.pay==="number"&&ty.pay<=0)?"inload":(ty.id==="t2"?"fall1":(ty.credits>0?"credit":"zero")); });
+  TERMS.forEach(function(t){ (PLAN[t.id]||[]).forEach(function(r){
+    if(!r.src&&!r.info&&r.name==="Work-Based Learning Seminar")r.name=WBL_NAME; }); });
+  TOVR=(o.v&&typeof o.v==="object")?o.v:{};
+  NOVR=(o.w&&typeof o.w==="object")?o.w:{};
+  /* the old combined "AD__" course name, once typed over a section by hand, is gone */
+  Object.keys(NOVR).forEach(function(k){ if(/^AD__/.test(String(NOVR[k])))delete NOVR[k]; });
+  /* departments renamed since a plan was saved: carry its settings across */
+  var REN={"Legal Studies":"PSLS: Legal Studies","Poli Sci and Internt'l Relations":"PSLS: Poli Sci and IR",
+           "Sociology and Criminal Justice":"Criminal Justice"};
+  if(Array.isArray(o.d))o.d.forEach(function(d){
+    /* the combined row became Criminal Justice (keeping its settings) and Sociology */
+    if(d.n==="Sociology and Criminal Justice")d.p=5.82;
+    if(REN[d.n])d.n=REN[d.n];
+    if(REN[d.g])d.g=REN[d.g]; });
+  [TOVR,NOVR].forEach(function(map){
+    Object.keys(map).forEach(function(k){
+      var parts=k.split("|");
+      if((parts[0]==="d"||parts[0]==="p")&&REN[parts[1]]){
+        parts[1]=REN[parts[1]]; map[parts.join("|")]=map[k]; delete map[k]; } }); });
+  /* the four types are fixed: keep each one's saved name, colour and place, drop
+     any other, and give a missing one its default. A section's type comes from
+     what the section is, so by-hand type choices are cleared. */
+  var seenT={}, fixed=[];
+  TYPES.forEach(function(ty){
+    if(TYPE_CODES[ty.id]&&!seenT[ty.id]){ seenT[ty.id]=1; fixed.push(ty); } });
+  DEF.t.forEach(function(dt){
+    if(!seenT[dt.id]){ seenT[dt.id]=1; fixed.push(JSON.parse(JSON.stringify(dt))); } });
+  fixed.forEach(function(ty){
+    ty.code=TYPE_CODES[ty.id]; delete ty.kind; delete ty.pay; delete ty.credits;
+    if(typeof ty.name==="string")ty.name=ty.name.replace(/Fall[- ]?1/gi,"SM\u2192FL"); });
+  TYPES=fixed;
+  if(o.tv!==TV){ var ord={t3:0,t5:1,t1:2,tF:3,tS:4}; TYPES.sort(function(a,b){return ord[a.id]-ord[b.id];}); }
+  TOVR={};
+  TERMS.forEach(function(t){ (PLAN[t.id]||[]).forEach(function(r){
+    if(r.t&&!TYPE_CODES[r.t])r.t="t1"; }); });
+  DEF.t.forEach(function(dt){
+    for(var i=0;i<TYPES.length;i++)if(TYPES[i].id===dt.id)return;
+    TYPES.push(JSON.parse(JSON.stringify(dt)));
+  });
+  if(!Array.isArray(o.d)||!o.d.length)return;
+  var base={}; DEF.d.forEach(function(d){base[d.n]=d;});
+  /* a department added to the defaults since this plan was saved joins it as shipped */
+  /* a saved department that no longer exists (Art and Design, now three programs) drops out */
+  o.d=o.d.filter(function(d){return !!base[d.n];});
+  var have={}; o.d.forEach(function(d){have[d.n]=1;});
+  DEF.d.forEach(function(d){ if(!have[d.n])o.d.push(JSON.parse(JSON.stringify(d))); });
+  DEPTS=o.d.map(function(d){
+    var b=base[d.n]||{}, m={};
+    Object.keys(b).forEach(function(k){m[k]=b[k];});
+    Object.keys(d).forEach(function(k){if(d[k]!==undefined&&d[k]!==null)m[k]=d[k];});
+    if(typeof m.k!=="string")m.k=b.k||"-";
+    if(typeof m.c!=="string")m.c=b.c||"";
+    ["f1","fa","sp"].forEach(function(f){
+      if(typeof m[f]==="number")m[f]=m[f]?String(m[f]):"";
+      if(typeof m[f]!=="string")m[f]=b[f]||""; });
+    ["lf1","lfa","lsp"].forEach(function(f){
+      if(typeof m[f]!=="boolean")m[f]=false; });
+    ["fm","sm"].forEach(function(f){ m[f]=(m[f]==="p")?"p":"n"; });
+    ["fv","sv"].forEach(function(f){ m[f]=(typeof m[f]==="number"&&m[f]>=0)?m[f]:0; });
+    /* a saved empty list does not hide an extra course added to the defaults since */
+    m.x=(Array.isArray(d.x)&&(d.x.length||!(b.x&&b.x.length)))?d.x.map(function(x){
+        return {k:(typeof x.k==="string")?x.k:"",
+          f1:String(x.f1||""),fa:String(x.fa||""),sp:String(x.sp||""),
+          lf1:!!x.lf1,lfa:!!x.lfa,lsp:!!x.lsp}; })
+      :JSON.parse(JSON.stringify(b.x||[]));
+    if(m.k==="AD__-400")m.k="ADFA-400";   /* Art and Design's three codes are now separate lines */
+    if(o.ev!==EV&&b.sv!==undefined){ m.sm=b.sm; m.sv=b.sv; }
+    if(o.pv!==PV&&b.k!==undefined){
+      m.k=b.k; m.f1=b.f1; m.fa=b.fa; m.sp=b.sp;
+      m.x=JSON.parse(JSON.stringify(b.x||[]));
+    }
+    if(typeof m.z!=="string")m.z=b.z||"";
+    if(typeof m.zt!=="boolean")m.zt=!!b.zt;
+    if(!(typeof m.tsu==="number"&&typeof m.tfa==="number"&&m.tsu>=0&&m.tfa>=0&&m.tsu+m.tfa<=100+1e-9)){ m.tsu=null; m.tfa=null; }
+    m.o=!!b.o; m.g=(typeof m.g==="string")?m.g:(b.g||"");
+    m.p=(typeof m.p==="number"&&!isNaN(m.p))?m.p:(b.p||0);
+    if(o.wv!==WV&&typeof b.p==="number")m.p=b.p;   /* new weightings supersede an older saved share */
+    return m;
+  });
+}
+
+/* Order of sections: by course type in the order the types are listed in the
+   course-type table, then alphabetically by name (blank names last). The
+   builder reads each term top to bottom in this order; the chart stacks the
+   same types bottom to top and reverses the names so they read A to Z down. */
+function cmpSections(a,b){
+  var d=typeIndex(a.t)-typeIndex(b.t); if(d)return d;
+  var an=(a.name||"").trim(), bn=(b.name||"").trim();
+  if(!an!==!bn)return an?-1:1;
+  return an.localeCompare(bn,undefined,{numeric:true,sensitivity:"base"});
+}
+function sortPlan(){
+  TERMS.forEach(function(t){
+    var rows=PLAN[t.id].filter(function(r){return !r.info;}),
+        info=PLAN[t.id].filter(function(r){return r.info;});
+    rows.sort(cmpSections);
+    PLAN[t.id]=rows.concat(info);
+  });
+}
+function chartOrder(rows){
+  var out=rows.slice().sort(function(a,b){
+    var d=typeIndex(a.t)-typeIndex(b.t); if(d)return d;
+    return -cmpSections(a,b);
+  });
+  return out;   /* bottom first: within a type the names run Z to A upward, so A is on top */
+}
+/* The builder has three columns. Fall holds two lists, the Fall courses and the
+   SM\u2192FL ones, kept apart; both are worked out from the Departments grid. */
+var BUILD_COLS=[
+  {id:"summer",label:"Summer",terms:["summer"]},
+  {id:"fall",label:"Fall",terms:["fall"]},
+  {id:"spring",label:"Spring",terms:["spring"]}];
+function termLabel(id){ for(var i=0;i<TERMS.length;i++)if(TERMS[i].id===id)return TERMS[i].label; return id; }
+var PB_OPEN={};   /* which columns' section builders are expanded; closed by default */
+function buildPlanRows(){
+  sortPlan();
+  var host=document.getElementById("plan");
+  host.innerHTML=BUILD_COLS.map(function(bc){
+    return "<div class='pcol' data-col='"+bc.id+"'><h4><span>"+bc.label+"</span></h4>"+
+      "<div class='ptop'></div>"+
+      "<details class='pbuild' data-col='"+bc.id+"'"+(PB_OPEN[bc.id]?" open":"")+"><summary>Section builder</summary>"+
+      bc.terms.map(function(id){
+        return "<div class='psub' data-term='"+id+"'>"+
+          (bc.terms.length>1?"<h5 class='psubh'>"+esc(termLabel(id))+"</h5>":"")+
+          "<p class='pnote'></p><div class='prows'></div>"+
+          "<button type='button' class='addrow'>+ Add section</button></div>";
+      }).join("")+
+      "</details><div class='pfoot'></div></div>";
+  }).join("");
+  host.querySelectorAll("details.pbuild").forEach(function(dt){
+    dt.addEventListener("toggle",function(){ PB_OPEN[dt.dataset.col]=dt.open; });
+  });
+
+  TERMS.forEach(function(t){
+    var col=host.querySelector(".psub[data-term='"+t.id+"']");
+    if(!col)return;   /* SM→FL has no list of its own any more */
+    var box=col.querySelector(".prows");
+    PLAN[t.id].forEach(function(r,idx){
+      if(r.info){
+        var ir=document.createElement("div");
+        ir.className="prow info"; ir.dataset.i=idx;
+        ir.innerHTML="<span class='icode'>"+esc(r.code).replace("-","\u2011")+"</span>"+
+          "<span class='iname'>"+esc(r.name)+"<small>"+esc(r.note||"")+"</small></span>"+
+          "<span class='in'>"+n0(r.n)+"</span>";
+        box.appendChild(ir); return;
+      }
+      var ty=typeAt(r.t), c=typeColor(r.t);
+      if(r.src){
+        var m=document.createElement("div");
+        m.className="prow mrow"; m.dataset.i=idx; m.style.borderLeftColor=c;
+        m.innerHTML=
+          "<div class='pkw' title='"+esc(ty.name)+"'><span class='kcode' style='color:"+c+";right:0'>"+esc(ty.code)+
+          "</span></div>"+
+          "<input class='mname' value='"+esc(r.name)+"' placeholder='"+esc(r.dname||"")+
+            "' title='Default: "+esc(r.dname||"")+" ("+esc(r.src.split("|")[1]||"")+"). Clear to restore.' aria-label='Section name'>"+
+          "<span class='mn'>"+n0(r.n)+"</span>"+
+          "<span class='pcost'></span><span class='mlock'>\u25CF</span>"+
+          ((r.sup||0)>0?"<small class='msup'>+ "+n0(r.sup)+" summer supplement</small>":"");
+        box.appendChild(m);
+        m.querySelector(".mname").addEventListener("input",function(){
+          var v=this.value.trim();
+          if(v&&v!==r.dname)NOVR[r.src]=v; else delete NOVR[r.src];
+          r.name=v||r.dname; savePlan(); render(); });
+        m.querySelector(".mname").addEventListener("change",function(){buildPlanRows();planTotals();render();});
+        return;
+      }
+      var d=document.createElement("div");
+      d.className="prow"; d.dataset.i=idx; d.style.borderLeftColor=c;
+      d.innerHTML=
+        "<div class='pkw'><select class='ptype' aria-label='Course type'>"+
+          TYPES.map(function(k){return "<option value='"+k.id+"'"+(k.id===r.t?" selected":"")+">"+
+            esc(k.code)+" · "+esc(k.name)+"</option>";}).join("")+
+        "</select><span class='kcode' style='color:"+c+"'>"+esc(ty.code)+
+        "</span><span class='kcar'></span></div>"+
+        "<input class='pname' value='"+esc(r.name)+"' placeholder='Section' aria-label='Section name'>"+
+        "<input type='number' class='pn' min='0' step='1' value='"+r.n+"' aria-label='Enrollment'>"+
+        "<span class='pcost'></span>"+
+        "<button type='button' class='pdel' aria-label='Remove section'>×</button>";
+      box.appendChild(d);
+
+      d.querySelector(".pname").addEventListener("input",function(){r.name=this.value;savePlan();render();});
+      /* re-sort only once the box is left, so rows do not jump while typing */
+      d.querySelector(".pname").addEventListener("change",function(){buildPlanRows();planTotals();render();});
+      d.querySelector(".pn").addEventListener("input",function(){
+        r.n=Math.max(0,parseInt(this.value,10)||0); savePlan(); planTotals(); render(); });
+      d.querySelector(".ptype").addEventListener("change",function(){
+        r.t=this.value;
+        savePlan(); buildPlanRows(); planTotals(); render();   /* rebuild: the type decides the row's place */
+      });
+      d.querySelector(".pdel").addEventListener("click",function(){
+        PLAN[t.id].splice(PLAN[t.id].indexOf(r),1); savePlan(); buildPlanRows(); planTotals(); render(); });
+    });
+
+    col.querySelector(".addrow").addEventListener("click",function(){
+      PLAN[t.id].push({t:TYPES[0].id,
+        name:(TYPES[0].id===roleType("t1",0).id?WBL_NAME:""),n:PARAMS.max});
+      savePlan(); buildPlanRows(); planTotals(); render();
+    });
+  });
+}
+
+/* the cost block at the top of each term column: which lines apply in which term,
+   and the lines themselves, in order */
+var COST_ON={summer:{t5:1,t1:1,tF:1},fall:{t5:1,t3:1,t2:1,t1:1,tF:1,tS:1},spring:{t5:1,t3:1,t1:1,tF:1,tS:1}};
+var COST_ROWS=[
+  {id:"t5",label:"0-credit sections",grp:1,sub:"(Summer, fall or spring. Check-ins and completion)"},
+  {id:"t2",label:"Academic integration supplement",grp:1,sub:"(Credit-bearing coursework for a 0-credit summer placement)"},
+  {id:"t3",label:"Traditional internship course",grp:1,sub:"(Fall or spring) (excludes in-load courses)"},
+  {id:"tF",label:"Faculty-led research",sub:"(Paid from the Activity Fee)"},
+  {id:"tS",label:"SEED",none:1},
+  {id:"t1",label:"CE-300"}];
+function planTotals(){
+  var tg=targets(), grand=0, sections=0, students=0;
+  TERMS.forEach(function(t){
+    var rows=live(t.id);
+    grand+=termCost(t.id); sections+=rows.length; students+=seated(t.id);
+    var sub=document.querySelector(".psub[data-term='"+t.id+"']");
+    if(!sub)return;
+    var note=sub.querySelector(".pnote");
+    if(t.id==="summer")note.textContent=
+      n0(supTotal())+" of these students go on to the credit-bearing supplement in fall.";
+    else if(t.id==="fall1")note.textContent=
+      "Not a population of its own. These are summer students taking the credit course after the placement ends.";
+    else note.textContent="";
+
+    /* hand-entered sizes are not limited by the cap */
+    sub.querySelectorAll(".prow:not(.info)").forEach(function(d){
+      if(d.classList.contains("mrow")){
+        d.querySelector(".pcost").textContent=money(sectionCost(PLAN[t.id][+d.dataset.i]));
+        return;
+      }
+      var r=PLAN[t.id][+d.dataset.i];
+      d.querySelector(".pcost").textContent=money(sectionCost(r));
+    });
+  });
+
+  BUILD_COLS.forEach(function(bc){
+    var rows=[], cost=0;
+    bc.terms.forEach(function(id){ rows=rows.concat(live(id)); cost+=termCost(id); });
+
+    /* students and dollars by type, in-load sections left out of the student count
+       because they carry no cost */
+    var tally={};
+    rows.forEach(function(r){
+      var x=(tally[r.t]=tally[r.t]||{st:0,cost:0});
+      x.cost+=fallCost(r); x.st+=Math.max(0,r.n-(r.nil||0));
+      if((r.sup||0)>0){
+        var y=(tally.t2=tally.t2||{st:0,cost:0});
+        y.cost+=supCost(r); y.st+=Math.max(0,r.sup-(r.supNil||0)); } });
+    var on=COST_ON[bc.id]||{};
+    function cbRow(def){
+      var x=tally[def.id]||{st:0,cost:0}, act=!!on[def.id];
+      var tot=(act&&x.cost>0&&!def.none)?money(x.cost):"--";
+      var calc=def.none?"no incremental cost":
+        money(def.id==="t2"?PARAMS.payF1:typeRate(typeAt(def.id)))+" \u00d7 "+(act?n0(x.st):"--")+" students";
+      return "<div class='cbrow"+(act?"":" off")+(def.grp?" ind":"")+"'><span class='cbl'>"+def.label+
+        "</span><span class='cbc'>"+calc+"</span><b>"+tot+"</b>"+
+        (def.sub?"<small>"+def.sub+"</small>":"")+"</div>";
+    }
+    var top="<div class='cbgrp'>Department courses</div>"+
+      COST_ROWS.slice(0,3).map(cbRow).join("")+
+      "<div class='cbgap'></div>"+COST_ROWS.slice(3).map(cbRow).join("")+
+      "<div class='cbrow cbtot'><span class='cbl'>Term Total</span><span class='cbc'></span><b>"+
+      (cost>0?money(cost):"--")+"</b></div>";
+
+    var h="";
+    var tgv=tg[bc.terms[0]];
+    if(tgv!==null){
+      /* the target is the departments' own cohorts; Faculty-led research and SEED
+         students were taken out of those, so their cards are not counted against it,
+         and SM\u2192FL students are summer students seen again, not extra people */
+      var nc=0; live(bc.terms[0]).forEach(function(r){ if(!(r.src&&r.src.indexOf("r|")===0))nc+=r.n; });
+      var gap=Math.round(tgv)-Math.round(nc);
+      h+="<div class='"+(gap!==0?"bad":"")+"'><span>"+
+         (gap>0?"Unplaced":(gap<0?"Over target":"Placed"))+"</span><b>"+
+         (gap===0?n0(nc)+" of "+n0(tgv):n0(Math.abs(gap)))+"</b></div>";
+    }
+    var col=document.querySelector(".pcol[data-col='"+bc.id+"']");
+    if(!col)return;
+    col.querySelector(".pfoot").innerHTML=h;
+    col.querySelector(".pfoot").style.display=h?"":"none";
+    col.querySelector(".ptop").innerHTML=top;
+  });
+
+  /* the total over the chart: the full cost of every section on the page, before tuition */
+  var tb=document.getElementById("totalbar");
+  if(tb){
+    tb.hidden=(SEL!==null);   /* only shown for the whole-university view */
+    var pop=PARAMS.students;
+    if(SEL!==null){ pop=0; var tt=deptTotal(); DEPTS.forEach(function(d){ if(!out(d))pop+=deptBase(d,tt); }); }
+    tb.innerHTML="Total Cost Before Tuition: <b>"+money(grand)+"</b>"+
+      "<span class='tbsep'>·</span><b>"+(pop>0?money(grand/pop):"$0")+"</b> / student";
+  }
+}
+
+/* ============================================================
+   7. go
+   ============================================================ */
+function go(){ writeTop(); renderGroups(); refreshTypeInfo(); planTotals(); render(); }
+
+var saved=loadPlan();
+if(saved){ adopt(saved); syncAll(); } else seedPlan();
+buildTop(); buildTypes(); buildDepts(); buildPlanRows(); go();
+(function(){
+  var th=document.getElementById("seedth"); if(!th)return;
+  function show(e){
+    var t=tipBox(); t.innerHTML=seedTipHTML(); t.style.display="block";
+    if(e.type==="focus"){ var r=th.getBoundingClientRect(); moveTip({clientX:r.left,clientY:r.bottom}); } else moveTip(e);
+  }
+  function hide(){ tipBox().style.display="none"; }
+  th.addEventListener("mouseenter",show); th.addEventListener("mousemove",moveTip);
+  th.addEventListener("mouseleave",hide); th.addEventListener("focus",show); th.addEventListener("blur",hide);
+})();
+if(!saved&&window.fetch){
+  fetchRepoPlan().then(function(o){
+    if(!o||TOUCHED)return;
+    applyState(o); TOUCHED=false;
+    saveMsg("Opened with the plan.json from the repo.","ok");
+  }).catch(function(){});
+}
+
+/* About the percentages: shown on hover, and pinned (with an X) on click */
+var HELP={};
+HELP.pct="<p>These weightings are calculated by reviewing four Workday Student enrollment snapshots: Fall 2023, 2024, 2025, and 2026.</p>"+
+  "<p>Narrowed to undergraduate students only (no Law or grad students) and omitting any certificate, INTO/Pathway, General Studies, Personal Enrichment, or other non-degree seeking students.</p>"+
+  "<p>Narrowed further to undergraduates in their second and third years (to remove the noise of undeclared and other transitional majors, and to focus on the populations that would be engaging in WBL). Students' year at Suffolk was counted as the snapshot year minus student's entry year, with spring entries assigned to the prior fall cohort.</p>"+
+  "<p>This grid divides some departments into major-specific rows and percentages, to account for very large departments like Political Science and Legal Studies, or for populations with very unique work-based learning needs like Radiation Therapy students vs. their Radiation Science peers, or for departments with distinct internship courses such as CJU-483 and SOC-483.</p>"+
+  "<p>These percentages reflect the weighting of students in these departments/programs from the data described above; it accurately describes the 4-year span, and also matches closely when compared to individual class years' weightings.</p>";
+(function(){
+  HELP.yr="<p>Yearly enrollment, adjustable in the variable section above.</p>"+
+    "<p>Because every student is required to complete this once, the annual population of WBL participants is the same as one class year in both size and departmental makeup. Spreading participation across the sophomore and junior years changes who is doing it in a given term, not how many students are doing it in a given year.</p>";
+  HELP.yrval="<p>Yearly enrollment, adjustable in the variable section above, times the percentage to the left. Hover over the percentage to see how it was derived.</p>";
+  HELP.h521="<p>Estimating and including only those students who haven&rsquo;t fulfilled the WBL requirement through ACCT-560 prior to Winternship</p>";
+  var hover=document.createElement("div"); hover.className="helptip";
+  document.body.appendChild(hover);
+  var pinned=null;
+  function place(e,x,y){
+    var w=e.offsetWidth,h=e.offsetHeight,pad=14;
+    var px=x+pad, py=y+pad;
+    if(px+w>window.innerWidth-8)px=x-w-pad;
+    if(py+h>window.innerHeight-8)py=y-h-pad;
+    e.style.left=Math.max(8,px)+"px"; e.style.top=Math.max(8,py)+"px";
+  }
+  function target(ev){ return ev.target.closest?ev.target.closest(".helpable"):null; }
+  function closePin(){ if(pinned){pinned.remove(); pinned=null;} }
+  document.addEventListener("mouseover",function(ev){
+    var t=target(ev); if(!t||pinned)return;
+    hover.innerHTML=HELP[t.dataset.help]||"";
+    hover.style.display="block"; place(hover,ev.clientX,ev.clientY);
+  });
+  document.addEventListener("mousemove",function(ev){
+    if(hover.style.display==="block"&&target(ev))place(hover,ev.clientX,ev.clientY);
+  });
+  document.addEventListener("mouseout",function(ev){
+    if(target(ev))hover.style.display="none";
+  });
+  document.addEventListener("click",function(ev){
+    if(!target(ev))return;
+    hover.style.display="none"; closePin();
+    pinned=document.createElement("div"); pinned.className="helptip pinned";
+    pinned.setAttribute("role","dialog");
+    pinned.innerHTML=(HELP[target(ev).dataset.help]||"")+"<button type='button' class='tipx' aria-label='Close'>×</button>";
+    document.body.appendChild(pinned);
+    var x=ev.pageX+14, y=ev.pageY+14, w=pinned.offsetWidth;
+    if(x+w>document.documentElement.scrollWidth-8)x=Math.max(8,ev.pageX-w-14);
+    pinned.style.left=x+"px"; pinned.style.top=y+"px";
+    pinned.querySelector(".tipx").addEventListener("click",closePin);
+  });
+  document.addEventListener("keydown",function(ev){
+    if(ev.key==="Escape")closePin();
+    if(ev.key==="Enter"&&target(ev))target(ev).click();
+  });
+})();
+function saveMsg(t,cls){
+  var e=document.getElementById("savemsg");
+  e.textContent=t||""; e.className="savemsg "+(cls||"");
+}
+function showSave(){ document.getElementById("plansave").hidden=!(DB&&CAN_EDIT); }
+if(window.claude&&window.claude.use){
+  var settled=false, giveUp=setTimeout(function(){settled=true;},10000);
+  Promise.resolve(window.claude.use("user")).then(function(u){
+    CAN_EDIT=!!(u&&u.canEdit&&u.canEdit()); showSave();
+  }).catch(function(){});
+  Promise.resolve(window.claude.use("db")).then(function(db){
+    if(settled||!db)return;
+    DB=db; showSave();
+    return db.doc("plan/current").get().then(function(doc){
+      clearTimeout(giveUp);
+      if(TOUCHED)return;
+      var d=doc&&doc.data&&doc.data.build;
+      if(!d||!d.s||!d.t||!d.p)return;
+      adopt(d); buildTypes(); buildPlanRows(); go(); TOUCHED=false;
+      saveMsg("Opened with the saved schedule.","ok");
+    });
+  }).catch(function(){ clearTimeout(giveUp); });
+}
+document.getElementById("plansave").addEventListener("click",function(){
+  if(!DB)return;
+  var btn=this; btn.disabled=true; saveMsg("Saving…","");
+  DB.doc("plan/current").set({build:{p:PARAMS,t:TYPES,s:PLAN,q:typeSeq},savedAt:Date.now()})
+    .then(function(){ saveMsg("Saved. Every visitor now opens with this schedule.","ok"); })
+    .catch(function(e){ saveMsg("Could not save: "+((e&&e.code)||"unknown error"),"bad"); })
+    .then(function(){ btn.disabled=false; });
+});
+/* the intro modal: opens on launch, closed by the X, Escape or a click outside */
+function setupModal(modalId,closeId,openerId,openNow){
+  var m=document.getElementById(modalId); if(!m)return null;
+  function close(){ m.hidden=true; document.body.classList.remove("modalopen"); document.removeEventListener("keydown",key,true); }
+  function key(e){ if(e.key==="Escape"){ e.stopPropagation(); close(); } }
+  document.getElementById(closeId).addEventListener("click",close);
+  m.addEventListener("mousedown",function(e){ if(e.target===m)close(); });
+  /* sit under the page title: the backdrop starts where the title block ends */
+  function place(){ var h=document.getElementById("pagehead"); m.style.top=h?Math.max(0,Math.round(h.getBoundingClientRect().bottom))+"px":"0"; }
+  window.addEventListener("resize",place);
+  function open(){
+    if(!m.hidden)return;
+    MODALS.forEach(function(o){ if(o!==api)o.close(); });
+    m.hidden=false; place(); m.scrollTop=0; m.firstElementChild.scrollTop=0;
+    document.body.classList.add("modalopen");
+    document.addEventListener("keydown",key,true);
+    document.getElementById(closeId).focus();
+  }
+  var api={open:open,close:function(){ if(!m.hidden)close(); }};
+  MODALS.push(api);
+  var ob=document.getElementById(openerId); if(ob)ob.addEventListener("click",open);
+  if(openNow)open();
+  return api;
+}
+var MODALS=[];
+setupModal("imodal","imclose","goalsbtn",false);
+setupModal("cemodal","ceclose","cebtn",false);
+MODALS[0].open();   /* the goals modal opens on launch */
+(function(){
+  var lb=document.getElementById("legendbox");
+  if(lb){
+    lb.addEventListener("click",function(e){ if(e.target.closest(".lglink"))openCE(); });
+    lb.addEventListener("keydown",function(e){ if((e.key==="Enter"||e.key===" ")&&e.target.closest(".lglink")){ e.preventDefault(); openCE(); } });
+  }
+  var cl=document.getElementById("celink");
+  if(cl)cl.addEventListener("click",function(e){ e.preventDefault(); openCE(); });
+})();
+})();
+</script>
+
+</body></html>
