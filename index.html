@@ -2211,7 +2211,6 @@ if(!saved&&window.fetch){
   fetchRepoPlan().then(function(o){
     if(!o||TOUCHED)return;
     applyState(o); TOUCHED=false;
-    saveMsg("Opened with the plan.json from the repo.","ok");
   }).catch(function(){});
 }
 
@@ -2286,7 +2285,6 @@ if(window.claude&&window.claude.use){
       var d=doc&&doc.data&&doc.data.build;
       if(!d||!d.s||!d.t||!d.p)return;
       adopt(d); buildTypes(); buildPlanRows(); go(); TOUCHED=false;
-      saveMsg("Opened with the saved schedule.","ok");
     });
   }).catch(function(){ clearTimeout(giveUp); });
 }
