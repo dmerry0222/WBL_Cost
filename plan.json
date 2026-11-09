@@ -16,41 +16,36 @@
       "id": "t3",
       "code": "DC",
       "name": "Department course, for credit",
-      "color": "#176B51"
-    },
-    {
-      "id": "t2",
-      "code": "SC",
-      "name": "SM→FL seminar, summer WBL for credit with add'l academic work",
-      "color": "#2E9170"
+      "color": "#287B73",
+      "desc": ""
     },
     {
       "id": "t5",
       "code": "D0",
       "name": "Department course, 0-credit",
-      "color": "#9AD9C6",
-      "textColor": "#175743"
+      "color": "#60A99A",
+      "textColor": "#173F39"
     },
     {
       "id": "tF",
       "code": "FR",
       "name": "Faculty-led research",
-      "color": "#B8A0DF",
-      "textColor": "#3F2866"
+      "color": "#AAADE4",
+      "textColor": "#34396E"
     },
     {
       "id": "tS",
       "code": "SD",
-      "name": "SEED",
-      "color": "#91C4E8",
-      "textColor": "#194C70"
+      "name": "SEED Clinics",
+      "color": "#A1C2E0",
+      "textColor": "#234B70"
     },
     {
       "id": "t1",
       "code": "CE",
-      "name": "CE-300",
-      "color": "#A6B8C9",
-      "textColor": "#2A455D"
+      "name": "CE-300: WBL Seminar",
+      "color": "#C1EBF4",
+      "textColor": "#205665"
     }
   ],
   "s": {
@@ -60,36 +55,40 @@
         "src": "p|ACCT-560|summer#0",
         "cr": 0,
         "il": false,
+        "nil": 0,
         "name": "ACCT-560",
         "dname": "ACCT-560",
-        "n": 14
+        "n": 7
       },
       {
         "t": "t5",
-        "src": "p|ADF-300|summer#0",
+        "src": "p|ADF-300 (if dept. desires)|summer#0",
         "cr": 0,
         "il": false,
-        "name": "ADF-300",
-        "dname": "ADF-300",
-        "n": 11
+        "nil": 0,
+        "name": "ADF-300 (if dept. desires)",
+        "dname": "ADF-300 (if dept. desires)",
+        "n": 15
       },
       {
         "t": "t5",
         "src": "p|FIN-560|summer#0",
         "cr": 0,
         "il": false,
+        "nil": 0,
         "name": "FIN-560",
         "dname": "FIN-560",
-        "n": 37
+        "n": 25
       },
       {
         "t": "t5",
-        "src": "p|PSYCH-300|summer#0",
+        "src": "p|PSYCH-300 (if dept. desires)|summer#0",
         "cr": 0,
         "il": false,
-        "name": "PSYCH-300",
-        "dname": "PSYCH-300",
-        "n": 56
+        "nil": 0,
+        "name": "PSYCH-300 (if dept. desires)",
+        "dname": "PSYCH-300 (if dept. desires)",
+        "n": 37
       },
       {
         "t": "tF",
@@ -105,7 +104,8 @@
         "src": "p|CE-300|summer#0",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -114,7 +114,8 @@
         "src": "p|CE-300|summer#1",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -123,7 +124,8 @@
         "src": "p|CE-300|summer#2",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -132,7 +134,8 @@
         "src": "p|CE-300|summer#3",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -141,7 +144,8 @@
         "src": "p|CE-300|summer#4",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -150,7 +154,8 @@
         "src": "p|CE-300|summer#5",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -159,7 +164,8 @@
         "src": "p|CE-300|summer#6",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -168,7 +174,8 @@
         "src": "p|CE-300|summer#7",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -177,7 +184,8 @@
         "src": "p|CE-300|summer#8",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -186,7 +194,8 @@
         "src": "p|CE-300|summer#9",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -195,7 +204,8 @@
         "src": "p|CE-300|summer#10",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -204,7 +214,8 @@
         "src": "p|CE-300|summer#11",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -213,7 +224,8 @@
         "src": "p|CE-300|summer#12",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -222,7 +234,8 @@
         "src": "p|CE-300|summer#13",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 25
       },
@@ -231,7 +244,8 @@
         "src": "p|CE-300|summer#14",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 24
       },
@@ -240,346 +254,297 @@
         "src": "p|CE-300|summer#15",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 24
       }
     ],
-    "fall1": [
-      {
-        "t": "t2",
-        "src": "d|A&D: Studio Art|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "ADFA-400",
-        "dname": "ADFA-400",
-        "n": 2
-      },
-      {
-        "t": "t2",
-        "src": "d|A&D: Interior Design|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "ADI-400",
-        "dname": "ADI-400",
-        "n": 11
-      },
-      {
-        "t": "t2",
-        "src": "d|Advertising, PR and Social Media|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "ADPR-503",
-        "dname": "ADPR-503",
-        "n": 5
-      },
-      {
-        "t": "t2",
-        "src": "d|Biology|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "BIO-503",
-        "dname": "BIO-503",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Communication Journalism and Media|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "CJN-505",
-        "dname": "CJN-505",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Business Economics|f1#0",
-        "cr": 3,
-        "il": false,
-        "name": "EC-503",
-        "dname": "EC-503",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Economics|f1#0",
-        "cr": 3,
-        "il": false,
-        "name": "EC-503",
-        "dname": "EC-503",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|English|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "ENG-514",
-        "dname": "ENG-514",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Cybersecurity|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "ISOM-520",
-        "dname": "ISOM-520",
-        "n": 3
-      },
-      {
-        "t": "t2",
-        "src": "d|ISOM|f1#0",
-        "cr": 3,
-        "il": false,
-        "name": "ISOM-520",
-        "dname": "ISOM-520",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|PSLS: Legal Studies|x0f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "LAWU-534",
-        "dname": "LAWU-534",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Management Studies|f1#0",
-        "cr": 3,
-        "il": false,
-        "name": "MGT-520",
-        "dname": "MGT-520",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Marketing|f1#0",
-        "cr": 3,
-        "il": false,
-        "name": "MKT-520",
-        "dname": "MKT-520",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|PSLS: Poli Sci and IR|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "POLS-534",
-        "dname": "POLS-534",
-        "n": 1
-      },
-      {
-        "t": "t2",
-        "src": "d|Psychology|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "PSYCH-350",
-        "dname": "PSYCH-350",
-        "n": 56
-      },
-      {
-        "t": "t2",
-        "src": "d|Theatre|f1#0",
-        "cr": 4,
-        "il": false,
-        "name": "THETR-488",
-        "dname": "THETR-488",
-        "n": 1
-      }
-    ],
+    "fall1": [],
     "fall": [
       {
         "t": "t3",
-        "src": "d|Accounting|fa#0",
+        "src": "c|ACCT-520|fa#0",
         "cr": 3,
-        "il": false,
         "name": "ACCT-520",
         "dname": "ACCT-520",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|A&D: Interior Design|fa#0",
+        "src": "c|ADFA-400|fa#0",
         "cr": 4,
+        "name": "ADFA-400",
+        "dname": "ADFA-400",
+        "n": 0,
+        "nil": 0,
         "il": false,
+        "sup": 2,
+        "supNil": 0
+      },
+      {
+        "t": "t3",
+        "src": "c|ADG-337|fa#0",
+        "cr": 4,
+        "name": "ADG-337",
+        "dname": "ADG-337",
+        "n": 2,
+        "nil": 0,
+        "il": false,
+        "sup": 4,
+        "supNil": 0
+      },
+      {
+        "t": "t3",
+        "src": "c|ADI-400|fa#0",
+        "cr": 4,
         "name": "ADI-400",
         "dname": "ADI-400",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false,
+        "sup": 11,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Advertising, PR and Social Media|fa#0",
+        "src": "c|ADPR-503|fa#0",
         "cr": 4,
-        "il": false,
         "name": "ADPR-503",
         "dname": "ADPR-503",
-        "n": 6
+        "n": 6,
+        "nil": 0,
+        "il": false,
+        "sup": 5,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Biology|fa#0",
+        "src": "c|BIO-503|fa#0",
         "cr": 4,
-        "il": false,
         "name": "BIO-503",
         "dname": "BIO-503",
-        "n": 5
+        "n": 5,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Chemistry and Biochemistry|fa#0",
+        "src": "c|CHEM-503|fa#0",
         "cr": 4,
-        "il": false,
         "name": "CHEM-503",
         "dname": "CHEM-503",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Communication Journalism and Media|fa#0",
+        "src": "c|CJN-505|fa#0",
         "cr": 4,
-        "il": false,
         "name": "CJN-505",
         "dname": "CJN-505",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Math and Computer Science|fa#0",
+        "src": "c|CMPSC-502|fa#0",
         "cr": 4,
-        "il": false,
         "name": "CMPSC-502",
         "dname": "CMPSC-502",
-        "n": 5
+        "n": 5,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Economics|fa#0",
+        "src": "c|EC-503|fa#0",
         "cr": 3,
-        "il": false,
         "name": "EC-503",
         "dname": "EC-503",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false,
+        "sup": 2,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|English|fa#0",
+        "src": "c|ENG-514|fa#0",
         "cr": 4,
-        "il": false,
         "name": "ENG-514",
         "dname": "ENG-514",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Global Humanities|fa#0",
+        "src": "c|GCS-503|fa#0",
         "cr": 4,
-        "il": false,
         "name": "GCS-503",
         "dname": "GCS-503",
-        "n": 3
+        "n": 3,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Cybersecurity|fa#0",
+        "src": "c|ISOM-520|fa#0",
         "cr": 4,
-        "il": false,
         "name": "ISOM-520",
         "dname": "ISOM-520",
-        "n": 1
-      },
-      {
-        "t": "t3",
-        "src": "d|ISOM|fa#0",
-        "cr": 3,
+        "n": 2,
+        "nil": 0,
         "il": false,
-        "name": "ISOM-520",
-        "dname": "ISOM-520",
-        "n": 1
+        "sup": 4,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|PSLS: Legal Studies|fa#0",
+        "src": "c|LAWU-521|fa#0",
         "cr": 4,
-        "il": false,
         "name": "LAWU-521",
         "dname": "LAWU-521",
-        "n": 14
+        "n": 14,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|PSLS: Legal Studies|x0fa#0",
+        "src": "c|LAWU-534|fa#0",
         "cr": 4,
-        "il": false,
         "name": "LAWU-534",
         "dname": "LAWU-534",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|PSLS: Poli Sci and IR|fa#0",
-        "cr": 4,
+        "src": "c|MGT-520|fa#0",
+        "cr": 3,
+        "name": "MGT-520",
+        "dname": "MGT-520",
+        "n": 0,
+        "nil": 0,
         "il": false,
+        "sup": 1,
+        "supNil": 0
+      },
+      {
+        "t": "t3",
+        "src": "c|MKT-520|fa#0",
+        "cr": 3,
+        "name": "MKT-520",
+        "dname": "MKT-520",
+        "n": 0,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
+      },
+      {
+        "t": "t3",
+        "src": "c|POLS-534|fa#0",
+        "cr": 4,
         "name": "POLS-534",
         "dname": "POLS-534",
-        "n": 6
+        "n": 6,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Psychology|fa#0",
+        "src": "c|PSYCH-350|fa#0",
         "cr": 4,
-        "il": false,
         "name": "PSYCH-350",
         "dname": "PSYCH-350",
-        "n": 19
+        "n": 28,
+        "nil": 0,
+        "il": false,
+        "sup": 37,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Strategy and International Business|fa#0",
+        "src": "c|SIB-520|fa#0",
         "cr": 3,
-        "il": false,
         "name": "SIB-520",
         "dname": "SIB-520",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Sports Management|fa#0",
+        "src": "c|SPMT-520|fa#0",
         "cr": 3,
-        "il": false,
         "name": "SPMT-520",
         "dname": "SPMT-520",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false,
+        "sup": 0,
+        "supNil": 0
       },
       {
         "t": "t3",
-        "src": "d|Theatre|fa#0",
+        "src": "c|THETR-488|fa#0",
         "cr": 4,
-        "il": false,
         "name": "THETR-488",
         "dname": "THETR-488",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false,
+        "sup": 1,
+        "supNil": 0
       },
       {
         "t": "t5",
         "src": "p|ACCT-560|fall#0",
         "cr": 0,
         "il": false,
+        "nil": 0,
         "name": "ACCT-560",
         "dname": "ACCT-560",
-        "n": 4
+        "n": 6
       },
       {
         "t": "t5",
         "src": "p|FIN-560|fall#0",
         "cr": 0,
         "il": false,
+        "nil": 0,
         "name": "FIN-560",
         "dname": "FIN-560",
-        "n": 13
+        "n": 12
       },
       {
         "t": "tF",
@@ -593,18 +558,19 @@
       {
         "t": "tS",
         "src": "r|tS|fall#0",
-        "cr": 0,
+        "cr": 3,
         "il": false,
         "name": "SEED",
         "dname": "SEED",
-        "n": 61
+        "n": 57
       },
       {
         "t": "t1",
         "src": "p|CE-300|fall#0",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 21
       },
@@ -613,7 +579,8 @@
         "src": "p|CE-300|fall#1",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 20
       },
@@ -622,7 +589,8 @@
         "src": "p|CE-300|fall#2",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 20
       },
@@ -631,7 +599,8 @@
         "src": "p|CE-300|fall#3",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 20
       },
@@ -655,255 +624,283 @@
     "spring": [
       {
         "t": "t3",
-        "src": "d|Accounting|x0sp#0",
+        "src": "c|ACCT-H521|sp#0",
         "cr": 3,
-        "il": false,
         "name": "ACCT-H521",
         "dname": "ACCT-H521",
-        "n": 4
+        "n": 5,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|A&D: Studio Art|sp#0",
+        "src": "c|ADFA-400|sp#0",
         "cr": 4,
-        "il": false,
         "name": "ADFA-400",
         "dname": "ADFA-400",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|A&D: Interior Design|sp#0",
+        "src": "c|ADG-337|sp#0",
         "cr": 4,
-        "il": false,
+        "name": "ADG-337",
+        "dname": "ADG-337",
+        "n": 1,
+        "nil": 0,
+        "il": false
+      },
+      {
+        "t": "t3",
+        "src": "c|ADI-400|sp#0",
+        "cr": 4,
         "name": "ADI-400",
         "dname": "ADI-400",
-        "n": 3
+        "n": 3,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Advertising, PR and Social Media|sp#0",
+        "src": "c|ADPR-503|sp#0",
         "cr": 4,
-        "il": false,
         "name": "ADPR-503",
         "dname": "ADPR-503",
-        "n": 6
+        "n": 6,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Biology|sp#0",
+        "src": "c|BIO-503|sp#0",
         "cr": 4,
-        "il": false,
         "name": "BIO-503",
         "dname": "BIO-503",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Chemistry and Biochemistry|sp#0",
+        "src": "c|CHEM-503|sp#0",
         "cr": 4,
-        "il": false,
         "name": "CHEM-503",
         "dname": "CHEM-503",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Communication Journalism and Media|sp#0",
+        "src": "c|CJN-505|sp#0",
         "cr": 4,
-        "il": false,
         "name": "CJN-505",
         "dname": "CJN-505",
-        "n": 7
+        "n": 7,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Criminal Justice|sp#0",
+        "src": "c|CJU-483|sp#0",
         "cr": 4,
-        "il": false,
         "name": "CJU-483",
         "dname": "CJU-483",
-        "n": 11
+        "n": 11,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Business Economics|sp#0",
+        "src": "c|EC-503|sp#0",
         "cr": 3,
-        "il": false,
         "name": "EC-503",
         "dname": "EC-503",
-        "n": 1
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Economics|sp#0",
-        "cr": 3,
-        "il": false,
-        "name": "EC-503",
-        "dname": "EC-503",
-        "n": 3
-      },
-      {
-        "t": "t3",
-        "src": "d|English|sp#0",
+        "src": "c|ENG-514|sp#0",
         "cr": 4,
-        "il": false,
         "name": "ENG-514",
         "dname": "ENG-514",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Entrepreneurship|sp#0",
+        "src": "c|ENT-521|sp#0",
         "cr": 3,
-        "il": false,
         "name": "ENT-521",
         "dname": "ENT-521",
-        "n": 3
+        "n": 3,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Environmental Science and Studies|sp#0",
+        "src": "c|ENVS-503|sp#0",
         "cr": 4,
-        "il": false,
         "name": "ENVS-503",
         "dname": "ENVS-503",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Global Humanities|sp#0",
+        "src": "c|GCS-503|sp#0",
         "cr": 4,
-        "il": false,
         "name": "GCS-503",
         "dname": "GCS-503",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Cybersecurity|sp#0",
+        "src": "c|ISOM-520|sp#0",
         "cr": 4,
-        "il": false,
         "name": "ISOM-520",
         "dname": "ISOM-520",
-        "n": 1
+        "n": 2,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|ISOM|sp#0",
-        "cr": 3,
-        "il": false,
-        "name": "ISOM-520",
-        "dname": "ISOM-520",
-        "n": 1
-      },
-      {
-        "t": "t3",
-        "src": "d|PSLS: Legal Studies|sp#0",
+        "src": "c|LAWU-521|sp#0",
         "cr": 4,
-        "il": false,
         "name": "LAWU-521",
         "dname": "LAWU-521",
-        "n": 11
+        "n": 11,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|PSLS: Legal Studies|x0sp#0",
+        "src": "c|LAWU-534|sp#0",
         "cr": 4,
-        "il": false,
         "name": "LAWU-534",
         "dname": "LAWU-534",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Management Studies|sp#0",
+        "src": "c|MGT-520|sp#0",
         "cr": 3,
-        "il": false,
         "name": "MGT-520",
         "dname": "MGT-520",
-        "n": 4
+        "n": 4,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Marketing|sp#0",
+        "src": "c|MKT-520|sp#0",
         "cr": 3,
-        "il": false,
         "name": "MKT-520",
         "dname": "MKT-520",
-        "n": 13
+        "n": 13,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|PSLS: Poli Sci and IR|sp#0",
+        "src": "c|POLS-534|sp#0",
         "cr": 4,
-        "il": false,
         "name": "POLS-534",
         "dname": "POLS-534",
-        "n": 9
+        "n": 9,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Psychology|sp#0",
+        "src": "c|PSYCH-350|sp#0",
         "cr": 4,
-        "il": false,
         "name": "PSYCH-350",
         "dname": "PSYCH-350",
-        "n": 18
+        "n": 28,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Strategy and International Business|sp#0",
+        "src": "c|SIB-520|sp#0",
         "cr": 3,
-        "il": false,
         "name": "SIB-520",
         "dname": "SIB-520",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Sociology|sp#0",
+        "src": "c|SOC-483|sp#0",
         "cr": 4,
-        "il": false,
         "name": "SOC-483",
         "dname": "SOC-483",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Sports Management|sp#0",
+        "src": "c|SPMT-520|sp#0",
         "cr": 3,
-        "il": false,
         "name": "SPMT-520",
         "dname": "SPMT-520",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Sports Management|x0sp#0",
+        "src": "c|SPMT-521|sp#0",
         "cr": 3,
-        "il": false,
         "name": "SPMT-521",
         "dname": "SPMT-521",
-        "n": 2
+        "n": 2,
+        "nil": 0,
+        "il": false
       },
       {
         "t": "t3",
-        "src": "d|Theatre|sp#0",
+        "src": "c|THETR-488|sp#0",
         "cr": 4,
-        "il": false,
         "name": "THETR-488",
         "dname": "THETR-488",
-        "n": 1
+        "n": 1,
+        "nil": 0,
+        "il": false
+      },
+      {
+        "t": "t5",
+        "src": "p|ACCT-560|spring#0",
+        "cr": 0,
+        "il": false,
+        "nil": 0,
+        "name": "ADPR-503",
+        "dname": "ACCT-560",
+        "n": 4
       },
       {
         "t": "t5",
         "src": "p|FIN-560|spring#0",
         "cr": 0,
         "il": false,
+        "nil": 0,
         "name": "FIN-560",
         "dname": "FIN-560",
-        "n": 12
+        "n": 25
       },
       {
         "t": "tF",
@@ -917,18 +914,19 @@
       {
         "t": "tS",
         "src": "r|tS|spring#0",
-        "cr": 0,
+        "cr": 3,
         "il": false,
         "name": "SEED",
         "dname": "SEED",
-        "n": 60
+        "n": 57
       },
       {
         "t": "t1",
         "src": "p|CE-300|spring#0",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 15
       },
@@ -937,7 +935,8 @@
         "src": "p|CE-300|spring#1",
         "cr": 0,
         "il": false,
-        "name": "WBL Seminar",
+        "nil": 0,
+        "name": "CE-300: WBL Seminar",
         "dname": "WBL Seminar",
         "n": 15
       },
@@ -978,8 +977,8 @@
       "fm": "n",
       "fv": 0,
       "sm": "n",
-      "tsu": null,
-      "tfa": null,
+      "tsu": 30,
+      "tfa": 30,
       "sv": 16,
       "z": "ACCT-560",
       "zt": true,
@@ -1038,8 +1037,8 @@
       "sm": "n",
       "tsu": null,
       "tfa": null,
-      "sv": 12,
-      "z": "ADF-300",
+      "sv": 4,
+      "z": "ADF-300 (if dept. desires)",
       "zt": false,
       "x": []
     },
@@ -1063,7 +1062,7 @@
       "tsu": null,
       "tfa": null,
       "sv": 2,
-      "z": "ADF-300",
+      "z": "ADF-300 (if dept. desires)",
       "zt": false,
       "x": []
     },
@@ -1348,8 +1347,8 @@
       "fm": "n",
       "fv": 0,
       "sm": "n",
-      "tsu": null,
-      "tfa": null,
+      "tsu": 40,
+      "tfa": 20,
       "sv": 20,
       "z": "FIN-560",
       "zt": true,
@@ -1550,10 +1549,10 @@
       "fm": "p",
       "fv": 5,
       "sm": "n",
-      "tsu": null,
-      "tfa": null,
+      "tsu": 40,
+      "tfa": 30,
       "sv": 0,
-      "z": "PSYCH-300",
+      "z": "PSYCH-300 (if dept. desires)",
       "zt": false,
       "x": []
     },
@@ -1744,7 +1743,29 @@
     "p|ACCT-560|fall#0": "ACCT-560",
     "p|FIN-560|fall#0": "FIN-560",
     "p|ACCT-560|spring#0": "ADPR-503",
-    "p|FIN-560|spring#0": "FIN-560"
+    "p|FIN-560|spring#0": "FIN-560",
+    "p|CE-300|summer#0": "CE-300: WBL Seminar",
+    "p|CE-300|summer#1": "CE-300: WBL Seminar",
+    "p|CE-300|summer#2": "CE-300: WBL Seminar",
+    "p|CE-300|summer#3": "CE-300: WBL Seminar",
+    "p|CE-300|summer#4": "CE-300: WBL Seminar",
+    "p|CE-300|summer#5": "CE-300: WBL Seminar",
+    "p|CE-300|summer#6": "CE-300: WBL Seminar",
+    "p|CE-300|summer#7": "CE-300: WBL Seminar",
+    "p|CE-300|summer#8": "CE-300: WBL Seminar",
+    "p|CE-300|summer#9": "CE-300: WBL Seminar",
+    "p|CE-300|summer#10": "CE-300: WBL Seminar",
+    "p|CE-300|summer#11": "CE-300: WBL Seminar",
+    "p|CE-300|summer#12": "CE-300: WBL Seminar",
+    "p|CE-300|summer#13": "CE-300: WBL Seminar",
+    "p|CE-300|summer#14": "CE-300: WBL Seminar",
+    "p|CE-300|summer#15": "CE-300: WBL Seminar",
+    "p|CE-300|fall#0": "CE-300: WBL Seminar",
+    "p|CE-300|fall#1": "CE-300: WBL Seminar",
+    "p|CE-300|fall#2": "CE-300: WBL Seminar",
+    "p|CE-300|fall#3": "CE-300: WBL Seminar",
+    "p|CE-300|spring#0": "CE-300: WBL Seminar",
+    "p|CE-300|spring#1": "CE-300: WBL Seminar"
   },
   "wv": 2,
   "pv": 1,

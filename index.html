@@ -510,16 +510,16 @@ var TERMS=[{id:"summer",label:"Summer"},{id:"fall1",label:"SM\u2192FL"},
            {id:"fall",label:"Fall"},{id:"spring",label:"Spring"}];
 
 /* validated against the palette checker; reused in order as types are added */
-var SWATCH=["#17788A","#C42B48","#6B4FA8","#CE7A52","#3C9DD0","#2AAE95","#A8468F","#7E3A28"];
+var SWATCH=["#176B51","#2E9170","#9AD9C6","#B8A0DF","#91C4E8","#A6B8C9","#A8468F","#7E3A28"];
 
 var PARAMS={students:1000, summerPct:60, max:25, frRate:500, pay0:100, payF1:150, payCr:250, floor:5, min:15};
 
 var TYPES=[
-  {id:"t3", code:"DC", name:"Dept for-credit"},
-  {id:"t5", code:"D0", name:"Dept 0-credit"},
-  {id:"t1", code:"CE", name:"CE-300"},
-  {id:"tF", code:"FR", name:"Faculty-led research"},
-  {id:"tS", code:"SD", name:"SEED"}
+  {id:"t3", code:"DC", name:"Dept for-credit", color:"#176B51"},
+  {id:"t5", code:"D0", name:"Dept 0-credit", color:"#9AD9C6", textColor:"#175743"},
+  {id:"t1", code:"CE", name:"CE-300", color:"#A6B8C9", textColor:"#2A455D"},
+  {id:"tF", code:"FR", name:"Faculty-led research", color:"#B8A0DF", textColor:"#3F2866"},
+  {id:"tS", code:"SD", name:"SEED", color:"#91C4E8", textColor:"#194C70"}
 ];
 /* The four types are fixed, each tied to a property of the section rather than
    chosen by hand: CE = the generic CE-300 pool, D0 = a department's own 0-credit
